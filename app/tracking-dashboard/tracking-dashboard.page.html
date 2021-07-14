@@ -1,0 +1,100 @@
+<ion-content class="ion-padding">
+
+  
+  
+  <div>
+    <ion-grid>
+
+        <ion-row>
+
+       <ion-col col-md-4>
+         
+       <ion-card class="fixed" (click)="Previous_jobs()" style="background-color:#f7f3f2;text-align: center" >        
+        
+       
+        <img src="assets/imgs/tracking.png" style="margin-top: 30px;height: 80px;align-self: center;justify-self: center">
+         <h2 style="margin-top: 15px"class="hi">Assets</h2> 
+           <ion-label   style="color: rgb(31, 16, 6);margin-top: 5px" > (80) </ion-label>
+        
+      </ion-card>
+    
+     </ion-col>
+
+          <ion-col col-md-4>
+            
+            <ion-card   class="fixed" (click)="Allocations()"  style="background-color:#3b7bd4;text-align: center" >
+                           
+            <img src="assets/imgs/fuel.png" style="margin-top: 30px;height: 50px;width: 120px;align-self: center;justify-self: center">
+           
+            <h1 style="margin-top: 15px" class="hi" >Fuel</h1> 
+            <!-- <ion-label *ngFor="let names of Expenses"   style="color: rgb(31, 16, 6);margin-top: 5px" > {{names}}  </ion-label>
+         -->
+              </ion-card>
+          </ion-col>
+        </ion-row>
+
+
+      </ion-grid>
+
+      <ion-grid>
+          <ion-row>
+         <ion-col col-md-1>
+         
+         <ion-card class="fixed" (click)="quotations()"  style="background-color:#e31717;text-align: center" >
+          
+          <img src="assets/imgs/scheduler.png" style="margin-top: 30px;height: 80px;width: 80px;align-self: center;justify-self: center">
+           
+          <h1  style="margin-top: 5px"class="hi" >Scheduler</h1> 
+         <!-- <ion-label *ngFor="let names of Fueling"  style="color: rgb(31, 16, 6);margin-top: 5px" > {{names}}  </ion-label>
+         -->
+       </ion-card>
+       </ion-col>
+      
+            <ion-col col-md-1>
+            
+              <ion-card class="fixed"  (click)="accounts()"    style="background-color:#e31717;text-align: center" >
+                
+                 <img src="assets/imgs/expenses.png" style="margin-top: 30px;height: 80px;width: 80px;align-self: center;justify-self: center">
+          
+                <h1 style="margin-top: 15px" class="hi">Expenses</h1> 
+               <!-- <ion-label *ngFor="let names of Cashflow"   style="color: rgb(31, 16, 6);margin-top: 5px" > {{names}}  </ion-label>
+          -->
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+  
+
+      <ion-grid>
+          <ion-row>
+         <ion-col col-md-1>
+         
+         <ion-card class="fixed" (click)="quotations()"  style="background-color:#1776e3;text-align: center" >
+          
+          <img src="assets/imgs/mileage.png" style="margin-top: 30px;height: 80px;width: 80px;align-self: center;justify-self: center">
+           
+          <h1  style="margin-top: 15px"class="hi" >Mileage</h1> 
+         <!-- <ion-label *ngFor="let names of Fueling"  style="color: rgb(31, 16, 6);margin-top: 5px" > {{names}}  </ion-label>
+         -->
+       </ion-card>
+       </ion-col>
+      
+            <ion-col col-md-1>
+            
+              <ion-card class="fixed"  (click)="accounts()"    style="background-color:#0e872a;text-align: center" >
+                
+                 <img src="assets/imgs/entries.png" style="margin-top: 30px;height: 80px;width: 80px;align-self: center;justify-self: center">
+          
+                <h1 style="margin-top: 15px" class="hi">Entries</h1> 
+               <!-- <ion-label *ngFor="let names of Cashflow"   style="color: rgb(31, 16, 6);margin-top: 5px" > {{names}}  </ion-label>
+          -->
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+  
+    
+      </div>
+
+
+</ion-content>

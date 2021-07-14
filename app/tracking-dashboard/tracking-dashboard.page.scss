@@ -1,0 +1,111 @@
+.welcome-card ion-img {
+    max-height: 35vh;
+    overflow: hidden;
+  }
+ 
+  .fixed{
+      height: 190px;
+      width: 5px;
+    }
+   
+    ion-card{
+      display: flex;
+      flex-direction: column;
+      width: 100% !important;
+      margin: 0 !important;
+      position: center;
+    
+      height: 30px;
+    }
+  
+   
+    .h{
+      text-align: center;
+      margin-top: 10px;
+      padding: 1px;
+      font-size: 15px;
+      color: red;
+      vertical-align: middle;
+      align-content: center!important;
+    }
+
+.hi{
+  text-align: center;
+  margin-bottom: 5px;
+  color:black;
+  padding: 1px;
+  font-size: 15px;
+  vertical-align: middle;
+  align-content: center!important;
+}
+
+      .card-subtitle {
+        font-size: 1.0em;
+        position: absolute;
+        top: 52%;
+        width: 100%;
+        color: #fff;
+      }                               
+      ion-icon {
+        font-size: 80px; //Preferred size here
+         text-align: center;
+         color: white;
+         align-self: center;
+         justify-self: center;
+             }
+  
+             .icon {
+              position: center;
+              top: 50%;
+              left: 50%;
+              height: 50%;
+              transform: translate(-50%, -50%);
+              width: 35px;
+              height: 35px;
+              display: block;
+            //   background: red;
+          }
+  
+    image {
+      height: 20px;
+  width: 20px;
+  margin: auto;
+  display: block;
+   
+  }
+  .bg-style {
+    background: rgb(12, 0, 0);
+}
+ion-header ion-toolbar::shadow {
+  --background: snow;
+  
+  }
+  ion-content{
+   
+     --ion-background-color: snow; 
+  }
+
+  .btn{
+    background: var(--ion-color-qx3);
+  }
+  
+
+  .hi2{
+    color: black;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+  }
+
+  .custom-skeleton ion-skeleton-text {
+    line-height: 13px;
+  }
+  
+  .custom-skeleton ion-skeleton-text:last-child {
+    margin-bottom: 5px;
+  }
+
+
+  .new-background-color{
+    --background: #5a5b5c;
+    }

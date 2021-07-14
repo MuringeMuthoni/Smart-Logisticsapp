@@ -1,0 +1,41 @@
+<ion-content class="ion-padding">
+  <ion-card class="letsplay">
+        <div  style="text-align:center">
+          <img   src = "assets/imgs/logo-no outline.png" style="height: 120px;"> 
+      </div>
+    
+       
+          <div style="height:40px"></div>
+      
+          <div style="color:white;text-align:left;padding-left:5px">    
+                <ion-item>                 
+                    <ion-input  type="text" placeholder="First Name"  [(ngModel)]="usage.firstname"></ion-input>
+                    <ion-icon class="ion-align-self-center" name="person-outline" slot="start"></ion-icon>                  
+                  </ion-item>            
+               <hr style="margin-right: auto;height: 2px;background-color:#666;">
+                  <ion-item>                 
+                    <ion-input type="text" placeholder="Email"  [(ngModel)]="usage.emailname"  ></ion-input>                     
+                       <ion-icon class="ion-align-self-center" name="mail-unread" slot="start"></ion-icon>            
+                  </ion-item>
+                <hr style="margin-right: auto;height: 2px;background-color:#666;">
+                  <ion-item>                 
+                    <ion-input type="number" placeholder="phone number"  [(ngModel)]="usage.phonenumber"></ion-input> 
+                    <ion-icon class="ion-align-self-center" name="call-outline" slot="start"></ion-icon>                                                 
+                  </ion-item>                                     
+          </div>
+                
+         
+
+
+          <div style="text-align: center;margin-top: 40px;margin-left: 15px;margin-right: 15px;margin-bottom: 10px;">
+               <ion-button  shape="round" color="light" >Sign Up</ion-button>
+          </div>
+         
+
+          <div style="text-align: center;padding-top: 25px; ">
+               I'm a Member?
+                <ion-label  (click)="login()" style="color:red">  <u><b> Login</b></u> </ion-label>
+          </div>
+
+  </ion-card>
+</ion-content>

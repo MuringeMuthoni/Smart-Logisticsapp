@@ -1,0 +1,22 @@
+ion-content {
+    --background: url('/assets/imgs/splash image.png') 0 0/100% 100% no-repeat
+}
+
+
+
+ion-slide {
+  height: 100vh;
+  flex-direction: column;
+  
+}
+
+// ion-img {
+//   max-width: 50vw;
+//   max-height: 50vh;
+//   overflow: hidden;
+// }
+
+ion-slides {
+  --bullet-background: rgb(196, 196, 196);
+  --bullet-background-active: #ffffff;
+}

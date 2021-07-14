@@ -1,0 +1,42 @@
+<ion-content class="ion-padding">
+  <ion-card class="letsplay">
+  <div style="text-align: center;">
+          <img   src = "assets/imgs/logo-no outline.png"  style="height: 120px;"> 
+      </div>
+       
+    
+       
+          <div style="height:80px"></div>
+      
+          <div style="color:white;text-align:left;padding-left:5px">    
+                <ion-item>                 
+                    <ion-input placeholder="Email/Mobile.No"  [(ngModel)]="usage.txtuser"></ion-input>
+                    <ion-icon class="ion-align-self-center" name="mail-unread" slot="start"></ion-icon>
+                  </ion-item>
+              <hr style="margin-right: auto;height: 2px;background-color:#666;">
+                  <ion-item>                 
+                    <ion-input type="Password" placeholder="Password"  [(ngModel)]="usage.password"  ></ion-input>
+                    <ion-icon class="ion-align-self-center" name="lock-closed-outline" slot="start"></ion-icon>     
+                      <button  (click)="togglePasswordFieldType()" ion-button  slot="end">
+                         <ion-icon  [name]="isTextFieldType ? 'eye-off' : 'eye'"  > </ion-icon>
+                      </button>                
+                  </ion-item>
+               <hr style="margin-right: auto;height: 2px;background-color:#666;">
+
+                
+          </div>
+                
+         
+            <div style="text-align: center;margin-top: 40px;margin-left: 15px;margin-right: 15px;margin-bottom: 10px;">
+                      <img  style="height: 45px;width:80%;border-radius: 15px;"  src = "assets/imgs/get started button.png" (click)=" gotodashboard()" >
+            </div>
+
+       
+
+          <div style="text-align: center;padding-top: 25px; ">
+               Not a Member?
+                <ion-label  (click)=" registration()" style="color:red">  <u><b> Join now</b></u> </ion-label>
+          </div>
+
+  </ion-card>
+</ion-content>
