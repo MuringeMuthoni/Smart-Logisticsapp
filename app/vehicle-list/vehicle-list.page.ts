@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class VehicleListPage implements OnInit {
   daBuilding
   no_items_found_new:boolean=false;
+  segmentModel = "All";
   constructor(private router: Router) {
 this.daBuilding = [
       { id: 1,avatarimage:'assets/imgs/tracking.png', prodname: 'Ace -KCA 128J"',assetkm: 'Moving(73kph)',  },

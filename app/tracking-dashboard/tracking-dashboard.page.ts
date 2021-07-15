@@ -12,7 +12,7 @@ export class TrackingDashboardPage implements OnInit {
 
   ngOnInit() {
   }
-  gotodashboard()
+  gotovehiclelist()
   {
     this.router.navigate(['/vehicle-list']); 
     
