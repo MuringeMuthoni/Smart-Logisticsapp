@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-vehicle-list',
   templateUrl: './vehicle-list.page.html',
@@ -10,7 +10,7 @@ export class VehicleListPage implements OnInit {
   daBuilding
   no_items_found_new:boolean=false;
   segmentModel = "All";
-  constructor(private router: Router) {
+  constructor(private router: Router,private Loc: Location,) {
 this.daBuilding = [
       { id: 1,avatarimage:'assets/imgs/tracking.png', prodname: 'Ace -KCA 128J"',assetkm: 'Moving(73kph)',  },
    
@@ -32,5 +32,11 @@ this.daBuilding = [
   gotodashboard()
   {
     this.router.navigate(['/tabs']); 
+  }
+  
+  go_home(){
+
+    this.Loc.back();
+   
   }
 }
