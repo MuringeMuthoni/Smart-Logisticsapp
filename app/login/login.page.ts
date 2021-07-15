@@ -25,6 +25,7 @@ export class LoginPage implements OnInit {
 }
 gotodashboard()
 {
-  this.router.navigate(['/tracking-dashboard']); 
+  this.router.navigate(['/tabs']); 
+  console.log("tabs")
 }
 }

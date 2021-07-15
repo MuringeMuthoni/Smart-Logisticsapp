@@ -30,6 +30,26 @@ const routes: Routes = [
   {
     path: 'tracking-dashboard',
     loadChildren: () => import('./tracking-dashboard/tracking-dashboard.module').then( m => m.TrackingDashboardPageModule)
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+  {
+    path: 'tab-account',
+    loadChildren: () => import('./tab-account/tab-account.module').then( m => m.TabAccountPageModule)
+  },
+  {
+    path: 'tab-search',
+    loadChildren: () => import('./tab-search/tab-search.module').then( m => m.TabSearchPageModule)
+  },
+  {
+    path: 'tab-settings',
+    loadChildren: () => import('./tab-settings/tab-settings.module').then( m => m.TabSettingsPageModule)
+  },
+  {
+    path: 'vehicle-list',
+    loadChildren: () => import('./vehicle-list/vehicle-list.module').then( m => m.VehicleListPageModule)
   }
 ];
 
