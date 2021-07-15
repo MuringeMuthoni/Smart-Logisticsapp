@@ -8,7 +8,7 @@
             </ion-row>
           </ion-grid>
         </div>
-        
+
     <div style="height:10px"></div>     
 <ion-segment 
     value="All" 
@@ -33,10 +33,8 @@
     </ion-segment>
 
   
-<ion-card *ngIf="segmentModel === 'All'" style="border-radius:20px">
-   
-
-            
+   <ion-card *ngIf="segmentModel === 'All'" style="border-radius:20px">
+                
   <div *ngIf="no_items_found_new"  class="ion-padding" style="width: 100%;height: 100%;">
     <ion-item lines="none"  text-wrap style="font-size:x-large;font-weight:  bolder;margin-top: 20px;">
       Whoops!
@@ -58,9 +56,8 @@
       </label>
     </ion-item>       
   </div>
-  
 
-  <div  style="margin-top: 20px;">
+     <div  style="margin-top: 20px;">
     
 
    
@@ -98,37 +95,34 @@
 
   </div>
 
+   </ion-card>
+      <ion-card *ngIf="segmentModel === 'Online'" style="border-radius:20px">
+        
 
-  </ion-card>
-  
-  <ion-card *ngIf="segmentModel === 'Online'" style="border-radius:20px">
-    
+                
+      <div *ngIf="no_items_found_new"  class="ion-padding" style="width: 100%;height: 100%;">
+        <ion-item lines="none"  text-wrap style="font-size:x-large;font-weight:  bolder;margin-top: 20px;">
+          Whoops!
+        </ion-item>
 
-            
-  <div *ngIf="no_items_found_new"  class="ion-padding" style="width: 100%;height: 100%;">
-    <ion-item lines="none"  text-wrap style="font-size:x-large;font-weight:  bolder;margin-top: 20px;">
-      Whoops!
-    </ion-item>
+        <div style="text-align: center;justify-content: center;margin-top: 30px;">
+          <img height="50%"  src = "assets/theme/oops.png"> 
+        </div>
+        
+        
+        <ion-item text-wrap style="font-size:x-large;font-weight:  bolder;margin-top: 80px;">
+          Whoops!
+        </ion-item>
 
-    <div style="text-align: center;justify-content: center;margin-top: 30px;">
-       <img height="50%"  src = "assets/theme/oops.png"> 
-    </div>
-     
-    
-    <ion-item text-wrap style="font-size:x-large;font-weight:  bolder;margin-top: 80px;">
-      Whoops!
-    </ion-item>
+        <ion-item text-wrap lines="none">
+          <label style="font-size: medium;" >
+            <p>We couldn't find any past submissions<br>             
+          </p>                                     
+          </label>
+        </ion-item>       
+      </div>
 
-    <ion-item text-wrap lines="none">
-      <label style="font-size: medium;" >
-        <p>We couldn't find any past submissions<br>             
-       </p>                                     
-      </label>
-    </ion-item>       
-  </div>
-  
 
- 
   <div  style="margin-top: 20px;">
     
 
@@ -167,11 +161,10 @@
 
   </div>
 
-
-  </ion-card>
- <ion-card *ngIf="segmentModel === 'Offline'" style="border-radius:20px">
+    </ion-card>
+<ion-card *ngIf="segmentModel === 'Offline'" style="border-radius:20px">
     
-dgfdgd
+
             
   <div *ngIf="no_items_found_new"  class="ion-padding" style="width: 100%;height: 100%;">
     <ion-item lines="none"  text-wrap style="font-size:x-large;font-weight:  bolder;margin-top: 20px;">
@@ -237,16 +230,9 @@ dgfdgd
 
 
 
-  </div>
+ 
 
 
 
   </ion-card>
-  
-
-  
-  
-
-
-
 </ion-content>
