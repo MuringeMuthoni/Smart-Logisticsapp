@@ -21,7 +21,7 @@
 
           <ion-col col-md-4>
             
-            <ion-card   class="fixed" (click)="Allocations()"  style="background-color:#3b7bd4;text-align: center" >
+            <ion-card   class="fixed" (click)="gotofuel()"  style="background-color:#3b7bd4;text-align: center" >
                            
             <img src="assets/imgs/fuel.png" style="margin-top: 50px;height: 50px;width: 60px;align-self: center;justify-self: center">
            
@@ -39,7 +39,7 @@
           <ion-row>
          <ion-col col-md-1>
          
-         <ion-card class="fixed" (click)="quotations()"  style="background-color:#3fb020;text-align: center" >
+         <ion-card class="fixed" (click)="gotoscheduler()"  style="background-color:#3fb020;text-align: center" >
           
           <img src="assets/imgs/scheduler.png" style="margin-top: 50px;height: 50px;width: 60px;align-self: center;justify-self: center">
            
@@ -51,7 +51,7 @@
       
             <ion-col col-md-1>
             
-              <ion-card class="fixed"  (click)="accounts()"    style="background-color:#e31717;text-align: center" >
+              <ion-card class="fixed"  (click)="gotoexpenses()"    style="background-color:#e31717;text-align: center" >
                 
                  <img src="assets/imgs/expenses.png" style="margin-top: 50px;height: 50px;width: 50px;align-self: center;justify-self: center">
           
@@ -68,11 +68,11 @@
           <ion-row>
          <ion-col col-md-1>
          
-         <ion-card class="fixed" (click)="quotations()"  style="background-color:#1776e3;text-align: center" >
+         <ion-card class="fixed" (click)="gotoTracking()"  style="background-color:#1776e3;text-align: center" >
           
           <img src="assets/imgs/mileage.png" style="margin-top: 50px;height: 50px;width: 50px;align-self: center;justify-self: center">
            
-          <h1  style="margin-top: 15px"class="hi" >Mileage</h1> 
+          <h1  style="margin-top: 15px"class="hi" >Tracking</h1> 
          <!-- <ion-label *ngFor="let names of Fueling"  style="color: rgb(31, 16, 6);margin-top: 5px" > {{names}}  </ion-label>
          -->
        </ion-card>
@@ -80,11 +80,11 @@
       
             <ion-col col-md-1>
             
-              <ion-card class="fixed"  (click)="accounts()"    style="background-color:#3fb020;text-align: center" >
+              <ion-card class="fixed"  (click)="gotoreports()"    style="background-color:#3fb020;text-align: center" >
                 
                  <img src="assets/imgs/entries.png" style="margin-top: 50px;height: 50px;width: 50px;align-self: center;justify-self: center">
           
-                <h1 style="margin-top: 15px" class="hi">Entries</h1> 
+                <h1 style="margin-top: 15px" class="hi">Reports</h1> 
                <!-- <ion-label *ngFor="let names of Cashflow"   style="color: rgb(31, 16, 6);margin-top: 5px" > {{names}}  </ion-label>
           -->
               </ion-card>

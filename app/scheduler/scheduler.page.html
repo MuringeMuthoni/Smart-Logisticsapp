@@ -1,0 +1,122 @@
+<ion-content>
+ <div style="height: 30px;"></div>
+  <ion-card class="letsplay">
+ <div style="text-align: center;" *ngIf="viewentry">
+          <img   src = "assets/imgs/schedule.png"  style="height: 30%;width:30%"> 
+      </div>
+      <div style="text-align: center;width: 95%;margin-top: 1px;" *ngIf="viewlistt">
+          <ion-grid style="width: 100%;">
+            <ion-row style="padding-left: 10px;" >           
+              <ion-col size="1" style="text-align: left;margin-top: 10px;" >                
+                 <ion-icon style="width: 25px;height: 25px;color: white;margin-right: 1px;margin-top: 5px" name="search"  (click)="onKeypress($event)"></ion-icon>              
+              </ion-col>           
+            </ion-row>
+          </ion-grid>
+        </div>
+
+
+
+   <div style="height: 50px;"></div>
+     <div   *ngIf="viewentry">
+      <ion-item>
+            <ion-datetime displayFormat="DD-MM-YYYY" min="1960-03-14" max="2021-12-12" placeholder="Entry Date"  [(ngModel)]="usage.entrydate"></ion-datetime>
+              <ion-icon class="ion-align-self-center" name="calendar" slot="start"></ion-icon>
+          </ion-item>
+                       <hr style="margin-right: auto;height: 2px;background-color:#666;">  
+             <ion-item>  
+                  <ion-select   class="dropdown" placeholder="Select Vehicle Reg"  [(ngModel)]="usage.vehreg"   >
+                      <ion-select-option *ngFor="let names of vehreg;"  
+                          >{{names.prodname}}
+                      </ion-select-option>
+                  </ion-select>
+                  <ion-icon class="ion-align-self-center" name="car-outline" slot="start"></ion-icon>
+                 
+              </ion-item>
+
+         <hr style="margin-right: auto;height: 2px;background-color:#666;">  
+                    
+               <ion-item>                 
+                    <ion-input  type="text" clearInput [(ngModel)]="usage.description" placeholder="Shedule description"></ion-input>
+                    <ion-icon class="ion-align-self-center"  name="cash-outline" slot="start"></ion-icon>
+                    
+              </ion-item>
+         <hr style="margin-right: auto;height: 2px;background-color:#666;">  
+
+              
+           
+         
+   <div  style="text-align: center;margin-bottom: 10px;">
+      <ion-grid >  
+        <ion-row>          
+          <ion-col> 
+            <ion-button (click)="Accepting()" shape="round" color="success"  > Submit           
+            </ion-button>
+          </ion-col>
+          <ion-col>               
+            <ion-button (click)=" go_home()" shape="round" color="danger" >Cancel           
+            </ion-button>      
+          </ion-col>
+        </ion-row>         
+      </ion-grid> 
+    </div>
+ </div>
+    <div  style="margin-top: 20px;" *ngIf="viewlistt">
+    
+
+ 
+    <div style="padding-left: 10px;padding-right: 10px;">               
+           <div>
+  
+                 <ion-grid *ngFor="let item of vehreg" (click)="itemTapped(item)" style="margin-top: 20px;"  > 
+              
+                  <ion-row   style="padding-left: 10px;padding-right: 10px ;border-bottom-style: solid;border-bottom-width: 1px;border-color: rgb(207, 211, 211);" >   
+  
+                    <ion-col align-self: stretch size="4" >
+                    <ion-icon name="alarm-outline" style="width: 30px;align-self: center;justify-self: left" ></ion-icon>                                                           
+                    </ion-col>
+                
+                    <ion-col align-self: center size="8"  style="align-items: left;color:#bff549" >
+                      <div style="margin-top: 1px;text-align: left;">
+                        <b> {{item.prodname}} </b> <br>                        
+                        <ion-item text-wrap lines="none">  
+                        <ion-label  style="font-size: small;" > {{item.description}}  </ion-label>                                                                    
+                        </ion-item>        
+                       <ion-item>
+                          <ion-label  style="font-size: small;" >Due. {{item.dateleo}}   </ion-label>
+                       </ion-item>
+                        <ion-item>
+                          <ion-label  style="font-size: small;" >ksh. {{item.description}}   </ion-label>
+                       </ion-item>
+                        <div style="font-size: small;text-align: right;">
+                        <ion-icon name="caret-forward-circle-outline" style="height: 20px;justify-self: right"></ion-icon>                                                 
+                        </div>                                  
+                        </div>                 
+                    </ion-col>
+                  </ion-row> 
+                  </ion-grid>
+                 
+            
+            
+              </div> 
+      </div>
+
+
+  </div>
+
+          
+   </ion-card>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+   <div style="text-align:center" >  
+   <div *ngIf="showlist">
+      <ion-button shape="round" color="tertiary" (click)="showfuellist()">View List</ion-button>
+   </div>
+
+   <div *ngIf="closelist">
+     <ion-button shape="round" color="danger" (click)="closefuellist()"> Close List</ion-button>
+   </div>
+
+   </div>
+  </ion-toolbar>
+</ion-footer>

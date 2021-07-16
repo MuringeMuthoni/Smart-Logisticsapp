@@ -50,6 +50,26 @@ const routes: Routes = [
   {
     path: 'vehicle-list',
     loadChildren: () => import('./vehicle-list/vehicle-list.module').then( m => m.VehicleListPageModule)
+  },
+  {
+    path: 'fuel',
+    loadChildren: () => import('./fuel/fuel.module').then( m => m.FuelPageModule)
+  },
+  {
+    path: 'scheduler',
+    loadChildren: () => import('./scheduler/scheduler.module').then( m => m.SchedulerPageModule)
+  },
+  {
+    path: 'expenses',
+    loadChildren: () => import('./expenses/expenses.module').then( m => m.ExpensesPageModule)
+  },
+  {
+    path: 'tracking',
+    loadChildren: () => import('./tracking/tracking.module').then( m => m.TrackingPageModule)
+  },
+  {
+    path: 'reports',
+    loadChildren: () => import('./reports/reports.module').then( m => m.ReportsPageModule)
   }
 ];
 

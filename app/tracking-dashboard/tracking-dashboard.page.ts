@@ -17,4 +17,29 @@ export class TrackingDashboardPage implements OnInit {
     this.router.navigate(['/vehicle-list']); 
     
   }
+  gotofuel()
+  {
+    this.router.navigate(['/fuel']); 
+    
+  }
+  gotoexpenses()
+  {
+    this.router.navigate(['/expenses']); 
+    
+  }
+  gotoscheduler()
+  {
+    this.router.navigate(['/scheduler']); 
+    
+  }
+  gotoTracking()
+  {
+    this.router.navigate(['/tracking']); 
+    
+  }
+  gotoreports()
+  {
+    this.router.navigate(['/reports']); 
+    
+  }
 }

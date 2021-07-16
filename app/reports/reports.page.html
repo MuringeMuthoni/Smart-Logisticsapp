@@ -1,0 +1,37 @@
+
+<ion-content>
+  <ion-card class="letsplay" >
+      <div style="text-align: center;" >
+                <img   src = "assets/imgs/clipboard.png" style="height: 30%;width:30%"> 
+            </div>
+
+
+      <div style="text-align: center;width: 95%;margin-top: 1px;" *ngFor="let item of vehreg" >
+          <ion-grid style="width: 100%;">
+            <ion-row style="padding-left: 10px;" >              
+              <ion-col size="1" style="text-align: left;margin-top: 10px;" >                
+                  <img style="height: 20px;width:10px;align-self: left;" [src]="item.assetimg"   >
+               
+              </ion-col>
+
+              <ion-col push-md="1" align-self: center  style="align-items: center;" >                  
+                <div   style="text-align: center;width: 100%;color:lime"   > 
+                     {{item.description}}
+                  </div>            
+              </ion-col>
+            
+
+              <ion-col size="1"  style="text-align: left;margin-top: 5px;"   >               
+                <ion-icon style="color: white;" size="large" name="caret-forward-circle-outline"></ion-icon>              
+                </ion-icon>  
+              </ion-col>
+        
+            </ion-row>
+
+          </ion-grid>
+        </div>
+
+
+
+  </ion-card>
+</ion-content>
