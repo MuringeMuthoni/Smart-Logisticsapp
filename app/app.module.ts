@@ -13,8 +13,6 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [ SQLite,
-
-
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
