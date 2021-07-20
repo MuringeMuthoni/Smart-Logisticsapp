@@ -10,6 +10,7 @@ export class RegistrationPage implements OnInit {
     fullname:'',   
     phonenumber:'',
     emailname:'',
+    number:'',
   
   }
   constructor(private router: Router) { }

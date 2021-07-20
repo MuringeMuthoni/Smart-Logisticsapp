@@ -1,34 +1,33 @@
-<ion-content class="ion-padding">
 
-  
+<ion-content class="ion-padding">
   
   <div>
+    <img src="assets/imgs/Logistics.png" style="margin-top: 5px;height: 60px;align-self: center;justify-self: center">
+
+    <div id="spacer" style="height: 10px;"></div>
     <ion-grid>
 
         <ion-row>
 
        <ion-col col-md-4>
          
-       <ion-card class="fixed" (click)="gotovehiclelist()" style="background-color:#f7f3f2;text-align: center" > 
-       
-        <img src="assets/imgs/tracking.png" style="margin-top: 50px;height: 50px;width: 60px;align-self: center;justify-self: center">
-         <h2 style="margin-top: 15px;font-size:15px;color:black;align-content: center!important;">Assets</h2> 
-           <ion-label   style="color: rgb(31, 16, 6);margin-top: 5px" > (8) </ion-label>
-        
-      </ion-card>
+            <ion-card class="fixed" (click)="gotovehiclelist()" style="background-color:#1776e3;text-align: center"  > 
+            
+              <img src="assets/imgs/mileage.png" style="margin-top: 50px;height: 50px;width: 60px;align-self: center;justify-self: center">
+              <h2 style="color:white;margin-top: 15px;font-size:15px;align-content: center!important;">All Assets</h2> 
+               
+            </ion-card>
     
      </ion-col>
 
           <ion-col col-md-4>
+            <ion-card class="fixed" (click)="gotoTracking()"   style="background-color:#f7f3f2;text-align: center" >
+              <img src="assets/imgs/tracking.png" style="margin-top: 50px;height: 50px;width: 50px;align-self: center;justify-self: center">
+               <h1  style="margin-top: 15px;color:black;"class="hi" >Map</h1>         
+            </ion-card>
+
             
-            <ion-card   class="fixed" (click)="gotofuel()"  style="background-color:#3b7bd4;text-align: center" >
-                           
-            <img src="assets/imgs/fuel.png" style="margin-top: 50px;height: 50px;width: 60px;align-self: center;justify-self: center">
            
-            <h1 style="margin-top: 15px" class="hi" >Fuel</h1> 
-            <!-- <ion-label *ngFor="let names of Expenses"   style="color: rgb(31, 16, 6);margin-top: 5px" > {{names}}  </ion-label>
-         -->
-              </ion-card>
           </ion-col>
         </ion-row>
 
@@ -38,15 +37,10 @@
       <ion-grid>
           <ion-row>
          <ion-col col-md-1>
-         
-         <ion-card class="fixed" (click)="gotoscheduler()"  style="background-color:#3fb020;text-align: center" >
-          
-          <img src="assets/imgs/scheduler.png" style="margin-top: 50px;height: 50px;width: 60px;align-self: center;justify-self: center">
-           
-          <h1  style="margin-top: 25px"class="hi" >Scheduler</h1> 
-         <!-- <ion-label *ngFor="let names of Fueling"  style="color: rgb(31, 16, 6);margin-top: 5px" > {{names}}  </ion-label>
-         -->
-       </ion-card>
+            <ion-card   class="fixed" (click)="gotofuel()"  style="background-color:#3b7bd4;text-align: center" >                            
+              <img src="assets/imgs/fuel.png" style="margin-top: 50px;height: 50px;width: 60px;align-self: center;justify-self: center">                
+              <h1 style="margin-top: 15px" class="hi" >Fuel</h1>           
+          </ion-card>
        </ion-col>
       
             <ion-col col-md-1>
@@ -66,17 +60,17 @@
 
       <ion-grid>
           <ion-row>
-         <ion-col col-md-1>
-         
-         <ion-card class="fixed" (click)="gotoTracking()"  style="background-color:#1776e3;text-align: center" >
-          
-          <img src="assets/imgs/mileage.png" style="margin-top: 50px;height: 50px;width: 50px;align-self: center;justify-self: center">
-           
-          <h1  style="margin-top: 15px"class="hi" >Tracking</h1> 
-         <!-- <ion-label *ngFor="let names of Fueling"  style="color: rgb(31, 16, 6);margin-top: 5px" > {{names}}  </ion-label>
-         -->
-       </ion-card>
-       </ion-col>
+            <ion-col col-md-1>         
+            
+              <ion-card class="fixed" (click)="gotoscheduler()"  style="background-color:#3fb020;text-align: center" >
+              
+                <img src="assets/imgs/scheduler.png" style="margin-top: 50px;height: 50px;width: 60px;align-self: center;justify-self: center">
+                
+                <h1  style="margin-top: 25px"class="hi" >Scheduler</h1> 
+              <!-- <ion-label *ngFor="let names of Fueling"  style="color: rgb(31, 16, 6);margin-top: 5px" > {{names}}  </ion-label>
+              -->
+            </ion-card>
+          </ion-col>
       
             <ion-col col-md-1>
             

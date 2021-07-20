@@ -6,11 +6,7 @@ const routes: Routes = [
     path: '',
     redirectTo: 'intro',
     pathMatch: 'full'
-  },
-  {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  },
+  },  
   {
     path: 'default',
     loadChildren: () => import('./default/default.module').then( m => m.DefaultPageModule)
