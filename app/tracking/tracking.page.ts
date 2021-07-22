@@ -19,6 +19,18 @@ export class TrackingPage {
   Loading: any;
   Tracking = "Tracking All"
  
+  
+  address: any = {
+    place: '',
+    set: false,
+    latlng: google.maps.LatLng
+  };
+
+  address_dest: any = {
+    place: '',
+    set: false,
+    latlng: google.maps.LatLng
+  };
   constructor(public navCtrl: NavController,public alertController: AlertController,
     public platform: Platform,public wcf: WcfService,private loadingCtrl: LoadingController,
   ) {   
@@ -37,72 +49,109 @@ export class TrackingPage {
   vehlattitide;
   vehlongitude; 
   vehreg;
-  async presentLoading() {
-    const loading = await this.loadingCtrl.create({
-       message: 'Loading Your vehicles. Please wait...',
-       duration: 2000
-    });
-    await loading.present();
-    //this.wcf.Contents = item.vehlattitide + ";" + item.vehlongitude + ";" + item.vehreg 
-    var data = this.wcf.Contents
-    var splitvehicle = data.split(";");  
-    this.vehlattitide = splitvehicle[0]
-    console.log('this.vehlattitide: ' +this.vehlattitide)
-     this.vehlongitude = splitvehicle[1]; 
-    console.log(' this.vehlongitude: ' + this.vehlongitude)
-    this.vehreg = splitvehicle[2]; 
-    console.log(' this.vehreg: ' + this.vehreg)
 
-    this.initMap()
-  
-  
-  }
 
 
   
  loaded=0; 
  currentPosition: string = 'Please wait..';
  initMap() {
-      let mapOptions = {
-        center: location,
-        zoom: 8,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        disableDefaultUI: true,
-        MyLocationEnabled: true,
-        setMyLocationButtonEnabled: true,
-        draggable: true,
-                  
-      }
+  var lats=-1.2680238;
+  var plon = 36.8281785;
+    
+  var ori = new google.maps.LatLng(lats,plon);
+   
+    this.map = new google.maps.Map(this.mapElement.nativeElement, {
+      zoom: 15,
+         center: ori
+    });
 
-      var lat1= this.vehlattitide;
-      var lon1 = this.vehlongitude;
-               
-      this.map = new google.maps.Map(
-        this.mapElement.nativeElement,{
-          center: {lat: lat1, lng: lon1},
-          zoom: 8,
-          clickableIcons: true,
-          disableDefaultUI: true,
-          zoomControl: true,
-          zoomControlOptions:mapOptions                             
-        });
 
-        var ori = new google.maps.LatLng(lat1,lon1);
-        console.log('this.vehlattitide: ori ' +ori)
-        this.currentPosition = ori
-
-             return this.map;
-
-        this.gettrips_online()
-
-      }
-
+    this.presentLoading()
+  }
 
 
 
 
 Contents
+async presentLoading() {
+  const loading = await this.loadingCtrl.create({
+    message: 'Loading trip path. Please wait...',
+    duration: 2000
+  });
+  await loading.present();
+ 
+  this.loadmap();
 
+}
+
+loadmap(){
+
+console.log('init map in');
+var data = this.wcf.Contents
+var splitvehicle = data.split(";");  
+this.vehlattitide = splitvehicle[0]
+console.log('this.vehlattitide: ' +this.vehlattitide)
+ this.vehlongitude = splitvehicle[1]; 
+console.log(' this.vehlongitude: ' + this.vehlongitude)
+this.vehreg = splitvehicle[2]; 
+console.log(' this.vehreg: ' + this.vehreg)
+
+//var pna =  this.Wcf.platlng.split(",");    
+//console.log('init map data ' + this.Wcf.platlng);   
+// console.log('init map data2 ' + this.Wcf.dlatlng); 
+     
+var lat1 =this.vehlattitide;
+var lon1 = this.vehlongitude;
+// console.log('init map data2 ' + lat1 + ' . ' + lon1); 
+//var lats = lat1.replace("(","");
+//var lon = lon1.replace(")",""); 
+
+//var plon = lon.substring(0, 10); 
+var ori = new google.maps.LatLng(lat1,lon1);
+
+
+// var dna =  this.Wcf.dlatlng.split(",");            
+//var lat2 = dna[0].trim();
+//var lon2 = dna[1].trim();
+
+//lats = lat2.replace("(","");
+//lon = lon2.replace(")",""); 
+//var dlon = lon.substring(0,10);
+//var dest = new google.maps.LatLng(lats, lon); 
+
+  this.map = new google.maps.Map(this.mapElement.nativeElement, {
+    zoom: 17,
+       center: ori
+  });
+
+  let infoWindow = new google.maps.InfoWindow({
+    content: "<b>Vehicle Location</b>"
+  });
+  let marker = new google.maps.Marker({
+    map:  this.map,     
+    position: ori
+  });
+  infoWindow.open(this.map, marker);
+  
+  // this.address.latlng = ori
+  // var pick = new google.maps.LatLng(this.Wcf.dlat,this.Wcf.dlng);
+  // this.address_dest.latlng =pick
+
+ // this.startNavigating()
+  // google.maps.event.addListener(marker, 'click', () => {
+  //   infoWindow.open(this.map, marker);
+  // });
+
+
+ 
+// this.directionsDisplay.setMap(this.map);
+// this.calculateAndDisplayRoute(ori,dest);
+// console.log('mwisho' );
+
+
+
+}
 gettrips_online(){
    
   var vreg = "All"
