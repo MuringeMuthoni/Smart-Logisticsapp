@@ -78,6 +78,15 @@ export class PopMessagesPage implements OnInit {
             .then((data: string)=>{
               this.proceed(data);
              })
+            } else if (this.modelId ==2){
+              var conts = this.Contents
+              var MainURL = "https://api.logistics.co.ke/Jujus.svc/Gettrucks?Contents=" + conts  
+              this.Wcf.Server_connector_stream(MainURL)
+              .then((data: string)=>{
+                this.proceed(data);
+               })
+  
+
 
           }else{
             alert('param not set');

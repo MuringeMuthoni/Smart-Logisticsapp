@@ -104,13 +104,15 @@ export class LoginPage implements OnInit {
       console.log('pass is: ' + psw); 
       
       if (psw ==="undefined"){
-        this.ThisMessage[0] = "Password cannot be blank";
+        alert("Password cannot be blank")
+        //this.ThisMessage[0] = "Password cannot be blank";
         return;
       }  
   
       if (psw == null){
         console.log('eml null '); 
-        this.ThisMessage[0] = "Email cannot be blank";
+        alert("Email cannot be blank")
+       // this.ThisMessage[0] = "Email cannot be blank";
         return;
       }  
   
@@ -118,13 +120,15 @@ export class LoginPage implements OnInit {
   
       console.log('pass : ' + psdlens ); 
       if (psdlens<3){
-        this.ThisMessage[0] = "Please enter a valid password. Minimum password length is 4";
+        alert("Please enter a valid password. Minimum password length is 4")
+        //this.ThisMessage[0] = "Please enter a valid password. Minimum password length is 4";
         return;
       }
   
       if (psw === psw){
       }else{
-        this.ThisMessage[0] = "Passwords do not match. please confirm";
+        alert("Passwords do not match. please confirm")
+       // this.ThisMessage[0] = "Passwords do not match. please confirm";
         return;
       }
          
@@ -182,7 +186,7 @@ export class LoginPage implements OnInit {
         var zote = data.split(";");
              
           console.log("zote "+ zote)
-         if  (zote.indexOf("Not") >=0) {
+         if  (zote.indexOf("no") >=0) {
            alert('Sorry, wrong credentials used. Please try again')
                    
           }else if  (zote.indexOf("error") >=0) {

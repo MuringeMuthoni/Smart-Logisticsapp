@@ -8,7 +8,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content class="ion-padding" >
        <!-- <div style="text-align: center;width: 95%;margin-top: 1px;">
           <ion-grid style="width: 100%;">
             <ion-row style="padding-left: 10px;" >           
@@ -25,8 +25,7 @@
     color="tertiary" 
     scrollable="true"
     mode="ios"
-    [(ngModel)]="segmentModel" 
-    (ionChange)="segmentChanged($event)">
+    [(ngModel)]="segmentModel" >
 
       <ion-segment-button value="All">
         <ion-label>All</ion-label>
@@ -51,7 +50,7 @@
     </ion-item>
 
     <div style="text-align: center;justify-content: center;margin-top: 30px;">
-       <img height="50%"  src = "assets/theme/oops.png"> 
+       <img height="50%"  src = "assets/imgs/oops.png"> 
     </div>
      
     
@@ -74,7 +73,7 @@
     <div style="padding-left: 10px;padding-right: 10px;">               
            <div>
   
-                 <ion-grid *ngFor="let item of daBuilding" (click)="itemTapped(item)" style="margin-top: 20px;"  > 
+                 <ion-grid *ngFor="let item of itemall" (click)="itemTapped(item)" style="margin-top: 20px;"  > 
               
                   <ion-row   style="padding-left: 10px;padding-right: 10px ;border-bottom-style: solid;border-bottom-width: 1px;border-color: rgb(207, 211, 211);" >   
   
@@ -84,9 +83,9 @@
                 
                     <ion-col align-self: center size="8"  style="align-items: left;color:#bff549" >
                       <div style="margin-top: 1px;text-align: left;">
-                        <b> {{item.prodname}} </b> <br>                        
+                        <b> {{item.vehreg}} </b> <br>                        
                         <ion-item text-wrap lines="none">  
-                          <span style="font-size: small;" >{{item.assetkm}}  </span>
+                          <span style="font-size: small;" >{{item.vehstatus}}  </span>
                         </ion-item>        
                        
                         <div style="font-size: small;text-align: right;">
@@ -116,7 +115,7 @@
         </ion-item>
 
         <div style="text-align: center;justify-content: center;margin-top: 30px;">
-          <img height="50%"  src = "assets/theme/oops.png"> 
+          <img height="50%"  src = "assets/imgs/oops.png"> 
         </div>
         
         
@@ -140,7 +139,7 @@
     <div style="padding-left: 10px;padding-right: 10px;">               
            <div>
   
-                 <ion-grid *ngFor="let item of daBuilding" (click)="itemTapped(item)" style="margin-top: 20px;"  > 
+                 <ion-grid *ngFor="let item of itemall" (click)="itemTapped(item)" style="margin-top: 20px;"  > 
               
                   <ion-row   style="padding-left: 10px;padding-right: 10px ;border-bottom-style: solid;border-bottom-width: 1px;border-color: rgb(207, 211, 211);" >   
   
@@ -150,9 +149,9 @@
                 
                     <ion-col align-self: center size="8"  style="align-items: left;color:#bff549" >
                       <div style="margin-top: 1px;text-align: left;">
-                        <b> {{item.prodname}} </b> <br>                        
+                        <b> {{item.vehreg}} </b> <br>                        
                         <ion-item text-wrap lines="none">  
-                          <span style="font-size: small;" >{{item.assetkm}}  </span>
+                          <span style="font-size: small;" >{{item.vehstatus}}  </span>
                         </ion-item>        
                        
                         <div style="font-size: small;text-align: right;">
@@ -182,7 +181,7 @@
     </ion-item>
 
     <div style="text-align: center;justify-content: center;margin-top: 30px;">
-       <img height="50%"  src = "assets/theme/oops.png"> 
+       <img height="50%"  src = "assets/imgs/oops.png"> 
     </div>
      
     
@@ -207,7 +206,7 @@
     <div style="padding-left: 10px;padding-right: 10px;">               
            <div>
   
-                 <ion-grid *ngFor="let item of daBuilding" (click)="itemTapped(item)" style="margin-top: 20px;"  > 
+                 <ion-grid *ngFor="let item of itemall" (click)="itemTapped(item)" style="margin-top: 20px;"  > 
               
                   <ion-row   style="padding-left: 10px;padding-right: 10px ;border-bottom-style: solid;border-bottom-width: 1px;border-color: rgb(207, 211, 211);" >   
   
@@ -217,11 +216,16 @@
                 
                     <ion-col align-self: center size="8"  style="align-items: left;color:#bff549" >
                       <div style="margin-top: 1px;text-align: left;">
-                        <b> {{item.prodname}} </b> <br>                        
+                        <b> {{item.vehreg}} </b> <br>                        
                         <ion-item text-wrap lines="none">  
-                          <span style="font-size: small;" >{{item.assetkm}}  </span>
+                          <span style="font-size: small;" >{{item.vehstatus}}  </span>
                         </ion-item>        
-                       
+                       <div *ngIf="donotshow">
+                        <ion-item text-wrap lines="none">  
+                          <span style="font-size: small;" >{{item.vehlattitide}}  </span>
+                          <span style="font-size: small;" >{{item.vehlongitude}}  </span>
+                        </ion-item>
+                       </div>
                         <div style="font-size: small;text-align: right;">
                         <ion-icon name="caret-forward-circle-outline" style="height: 20px;justify-self: right"></ion-icon>                                                 
                         </div>                                  
