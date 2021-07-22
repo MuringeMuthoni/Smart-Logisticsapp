@@ -1,9 +1,38 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>default</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content padding>
+  <ion-grid style="height: 100%">
+             
+    <ion-row *ngIf="divnonet"  style="height: 10%">
+      <ion-col text-center>
+        <div  text-center style="margin-top:30%;padding: 5px;text-align: center;width: 90%;"  >  
+          
+          <span style="color: black;">
 
-<ion-content>
+            <h3>We are having trouble connecting. </h3>   <br>           
+            <span> Please check your internet connection </span>    <br>    
+              <span> Trying to connect.. </span>   <br>
+              <ion-spinner name="dots" style="color: red;"></ion-spinner>
+          
+          </span>           
+        </div>  
+    </ion-col> 
+    </ion-row>
+    
+     
+    <ion-row *ngIf="divnonet2" class="ion-align-items-center ion-justify-content-center"  style="height: 100%;margin-top: 1px;"> 
+       
+    </ion-row>
 
-</ion-content>
+  </ion-grid>
+
+
+</ion-content> 
+
+
+
+<!-- <ion-content [fullscreen]="true">  
+
+  <video  #player playsinline autoplay loop src="assets/video/intro.mp4" preload="none"  type="video/mp4"
+    controls webkit-playsinline width="480" muted preload="none" poster="assets/imgs/background1.png">
+ </video>
+
+</ion-content> -->

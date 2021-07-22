@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'intro',
+    redirectTo: 'default',
     pathMatch: 'full'
   },  
   {
@@ -66,7 +66,16 @@ const routes: Routes = [
   {
     path: 'reports',
     loadChildren: () => import('./reports/reports.module').then( m => m.ReportsPageModule)
+  },
+  {
+    path: 'pop-messages',
+    loadChildren: () => import('./pop-messages/pop-messages.module').then( m => m.PopMessagesPageModule)
+  },  {
+    path: 'pop-alert',
+    loadChildren: () => import('./pop-alert/pop-alert.module').then( m => m.PopAlertPageModule)
   }
+
+
 ];
 
 @NgModule({

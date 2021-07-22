@@ -24,3 +24,26 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.posting-popup .modal-wrapper {
+    height: 130px;
+    top: 35%;
+    width: 150px;
+    position: absolute; 
+    display: block; 
+    background-color: #FEFCFE; 
+    border-radius: 10px; 
+  }
+   
+.info2 .modal-wrapper {
+    height: 150px;
+    top: 35%;
+    width: 80%;
+    position: absolute; 
+    display: block; 
+   // opacity: 0.3 !important;   
+    box-shadow: 0 16px 20px rgba(0,0,0,.4);
+    border-radius: 10px;
+    border: 1px solid rgb(139, 91, 2);
+    padding: 20px;   
+  }

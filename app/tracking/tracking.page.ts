@@ -96,8 +96,8 @@ gettrips_online(){
   //the api will return one vehicle if variable vreg is All
 
 
-      this.Contents = this.wcf.User_id + ";" + vreg + "7979";
-      this.wcf.get_trips_asynch(this.Contents)
+      this.Contents = this.wcf.Userid + ";" + vreg + "7979";
+    this.wcf.get_trips_asynch(this.Contents)
       .then((data)=>{
           this.wait_async_feedback(data);
         },
