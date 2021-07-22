@@ -2,7 +2,7 @@
 import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { AlertController, LoadingController, NavController,  Platform } from '@ionic/angular';
 import { WcfService } from '../wcf.service';
-
+import { Location } from '@angular/common';
 declare var google: any;
 
 @Component({
@@ -32,7 +32,7 @@ export class TrackingPage {
     latlng: google.maps.LatLng
   };
   constructor(public navCtrl: NavController,public alertController: AlertController,
-    public platform: Platform,public wcf: WcfService,private loadingCtrl: LoadingController,
+    public platform: Platform,public wcf: WcfService,private loadingCtrl: LoadingController,private Loc: Location,
   ) {   
 
   }
@@ -227,6 +227,10 @@ gettrips_online(){
    
     }
 
-
+    go_home(){
+ 
+      this.Loc.back();
+     
+    }
 
 }
