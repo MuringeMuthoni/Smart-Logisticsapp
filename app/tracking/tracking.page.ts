@@ -34,13 +34,25 @@ export class TrackingPage {
    
     //this.divpost = false
   }
-
+  vehlattitide;
+  vehlongitude; 
+  vehreg;
   async presentLoading() {
     const loading = await this.loadingCtrl.create({
        message: 'Loading Your vehicles. Please wait...',
        duration: 2000
     });
     await loading.present();
+    //this.wcf.Contents = item.vehlattitide + ";" + item.vehlongitude + ";" + item.vehreg 
+    var data = this.wcf.Contents
+    var splitvehicle = data.split(";");  
+    this.vehlattitide = splitvehicle[0]
+    console.log('this.vehlattitide: ' +this.vehlattitide)
+     this.vehlongitude = splitvehicle[1]; 
+    console.log(' this.vehlongitude: ' + this.vehlongitude)
+    this.vehreg = splitvehicle[2]; 
+    console.log(' this.vehreg: ' + this.vehreg)
+
     this.initMap()
   
   
@@ -62,20 +74,21 @@ export class TrackingPage {
                   
       }
 
-      var lat1=-1.2680238;
-      var lon1 = 36.8281785;
+      var lat1= this.vehlattitide;
+      var lon1 = this.vehlongitude;
                
       this.map = new google.maps.Map(
         this.mapElement.nativeElement,{
           center: {lat: lat1, lng: lon1},
           zoom: 8,
-          clickableIcons: false,
+          clickableIcons: true,
           disableDefaultUI: true,
           zoomControl: true,
           zoomControlOptions:mapOptions                             
         });
 
         var ori = new google.maps.LatLng(lat1,lon1);
+        console.log('this.vehlattitide: ori ' +ori)
         this.currentPosition = ori
 
              return this.map;
@@ -96,7 +109,7 @@ gettrips_online(){
   //the api will return one vehicle if variable vreg is All
 
 
-      this.Contents = this.wcf.Userid + ";" + vreg + "7979";
+      this.Contents = this.wcf.Usermesso + ";" + vreg + "7979";
     this.wcf.get_trips_asynch(this.Contents)
       .then((data)=>{
           this.wait_async_feedback(data);

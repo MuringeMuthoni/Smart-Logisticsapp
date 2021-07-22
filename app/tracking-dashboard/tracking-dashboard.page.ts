@@ -32,7 +32,7 @@ export class TrackingDashboardPage implements OnInit {
     this.router.navigate(['/scheduler']); 
     
   }
-  ()
+  gotoTracking()
   {
     this.router.navigate(['/tracking']); 
     
