@@ -33,29 +33,23 @@ export class PopMessagesPage implements OnInit {
    this.Content = this.navParams.data.paramTitle;
 
    console.log('content: ' + this.Content + ' await: ' + this.modelId)
-
-   if (this.modelId == 0){
-      this.protocal = "01"   
-      this.msg_names = "Posting. Please wait"
-      this.Comm_server();
-
-   }else if (this.modelId == 1){
   
-    this.msg_names = "Please wait"
-    this.Comm_server();
-
-  }else if (this.modelId == 2){
+  if (this.modelId == 0){
 
     var MainURL = "https://api.logistics.co.ke/Jujus.svc/Client_Connection?Contents=";          
    // var encrypted = AES.encrypt(this.Content,'att@2020@').toString(); 
     this.Wcf.Contents =  this.Content + "|" + MainURL;
-    this.Comm_server();
+    this.Wcf.Serverconnector(MainURL, this.Content) 
+    .then((data:string) => { 
+      this.proceed(data)
+    })
 
-  }else if (this.modelId == 4){   
+
+  }else if (this.modelId == 1){   
     var MainURL = "https://api.logistics.co.ke/Jujus.svc/Create_account?Contents=";          
     var encrypted = AES.encrypt(this.Content,'att@2020@').toString(); 
     this.Wcf.Contents =  encrypted + "|" + MainURL;
-    this.Comm_server();
+   // this.Comm_server();
 
    
   }else{
@@ -66,25 +60,27 @@ export class PopMessagesPage implements OnInit {
 
   }
 
-  protocal="01";
-  divclose:boolean=false;
-  divspinner:boolean=true;
-  public Comm_server(){    
-    return new Promise((resolve) =>{     
+//   protocal="01";
+//   divclose:boolean=false;
+//   divspinner:boolean=true;
+//   public Comm_server(){    
+//     return new Promise((resolve) =>{     
 
-          var datazote =this.Wcf.Contents.split("|");
+//           var datazote =this.Wcf.Contents.split("|");
         
-          var data = datazote[0] 
-          var MainURL = datazote[1]  
+//           var data = datazote[0] 
+//           var MainURL = datazote[1]  
 
-          console.log('datazoteMainURL: ' + datazote )
+//           console.log('datazoteMainURL: ' + datazote )
                 
-          this.Wcf.Serverconnector(MainURL, data) 
-          console.log('datazotedata: ' + data  )       
-    });
+//          var authenticated = 
+
+//           resolve(authenticated)
+//           console.log('datazotedata: ' + authenticated  )       
+//     });
    
 
-}
+// }
 
 
 

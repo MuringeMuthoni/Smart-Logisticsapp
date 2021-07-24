@@ -91,37 +91,35 @@ export class WcfService {
    
     return new Promise((resolve, reject) =>{              
           
-      var Sending_conts = Cont
-      var Protocal = this.Protocal;
-      var Content = this.stringToHex(Sending_conts);
-      var MsgLens = Content.length;
-      var MsgLength = ('000' + MsgLens).slice(-4); //String.format("%04d",MsgLens); 
-      var Mes_to_send = this.Startbit  + Protocal   + MsgLength  + Content  + this.Stopbit;
-         var MainURL =url 
-      var Searchurl = MainURL+ Sending_conts;
-      console.log('linklink ' + Searchurl);
+     // var Sending_conts = Cont
+      // var Protocal = this.Protocal;
+      // var Content = this.stringToHex(Sending_conts);
+      // var MsgLens = Content.length;
+      // var MsgLength = ('000' + MsgLens).slice(-4); //String.format("%04d",MsgLens); 
+      // var Mes_to_send = this.Startbit  + Protocal   + MsgLength  + Content  + this.Stopbit;
+      //    var MainURL =url 
+       var Searchurl = url+ Cont;
+      // console.log('linklink ' + Searchurl);
      
       this.http.get(Searchurl,{},{})
      .then((data) => {     
-      console.log('linklink data' + data);
+  
        Response = data.data;       
-        var returned = data.data;
-        console.log('linklink returned' + returned);
-       var Result = returned.replace("\"","");
-       console.log('linklink Result' + Result);
-       var rt = Result.replace("\"", "");
-       console.log('linklink rt' + rt);
+        var returned = data.data;       
+       var Result = returned.replace("\"","");    
+       var rt = Result.replace("\"", "");     
        var rt2 = rt.replace('"', "");    
-       console.log('linklink rt2' + rt2);
+     
+
        if  (rt2.indexOf('error') >= 0) {  
-        resolve("error");      
+          resolve("error");      
         }else{       
-           this.HextoString(rt2)
-             .then((hexed) => {             
-               var payload = hexed; 
-                 resolve(payload);
-                console.log('payload.. ' + payload)  
-             })    
+           //this.HextoString(rt2)
+            // .then((hexed) => {             
+             //  var payload = hexed; 
+                 resolve(rt2);
+                 console.log('payload.. ' + rt2)  
+           //  })    
 
         }
     
@@ -192,25 +190,25 @@ export class WcfService {
     }
 
  
-    public HextoString(hexed) {
-      //console.log('hexing back');  
-      return new Promise((resolve) =>{         
-      try {
-            var hex = hexed.toString();//force conversion
-            var str = '';
-            for (var i = 0; (i < hex.length && hex.substr(i, 2) !== '00'); i += 2)
-                str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));          
+    // public HextoString(hexed) {
+    //   //console.log('hexing back');  
+    //   return new Promise((resolve) =>{         
+    //   try {
+    //         var hex = hexed.toString();//force conversion
+    //         var str = '';
+    //         for (var i = 0; (i < hex.length && hex.substr(i, 2) !== '00'); i += 2)
+    //             str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));          
           
-          //console.log('hex back: '  +str);       
-          resolve(str);  
+    //       //console.log('hex back: '  +str);       
+    //       resolve(str);  
              
         
-      } catch (error) {
-        console.log('error '  + error);  
-      }
+    //   } catch (error) {
+    //     console.log('error '  + error);  
+    //   }
      
-      })
-    }
+    //   })
+    // }
     
 
 
@@ -610,59 +608,6 @@ return new Promise((resolve, reject) =>{
 
 }
 
-
-get_boda_trips(Cont){
-  // console.log("cont" + Cont)
-     return new Promise((resolve, reject) =>{              
-           
-       var Sending_conts = Cont
-       var Protocal = "01";
-       var Content = this.stringToHex(Sending_conts);
-       var MsgLens = Content.length;
-       var MsgLength = ('000' + MsgLens).slice(-4); //String.format("%04d",MsgLens); 
-       var Mes_to_send = this.Startbit  + Protocal   + MsgLength  + Content  + this.Stopbit;
-
-      
-       var MainURL = "https://api.gofer-errands.com/Jujus.svc/Current_trips?Contents=";   
-       var Searchurl = MainURL+ Mes_to_send;
-       console.log("Checking trips: " + Searchurl);
-   
-      this.http.get(Searchurl,{},{})
-      .then((data) => {     
-        Response = data.data;       
-      //  console.log("Response" + Response)
-        var returned = data.data;
-        var Result = returned.replace("\"","");
-        var rt = Result.replace("\"", "");
-        var rt2 = rt.replace('"', "");
-        
-        var zote = rt2.split(";");
-        var msg = zote[0]
-             
-            this.HextoString(rt2)
-             .then((hexed) => {             
-               var payload = hexed; 
-                 resolve(payload);
-                 console.log('payload.. ' + payload)  
-             })    
-
-
-          // resolve(msg);     
-        // }
-     
-       })
-       .catch((error) => {
-        
-         console.log('host 1 error: ' + error.error);
-         var err = error.error;   
-         if (err ==="The host could not be resolved"){
-           console.log("hatupati host"); 
-         }
-         reject(err);
-       })
-     })
-   
-   }
 
 
 

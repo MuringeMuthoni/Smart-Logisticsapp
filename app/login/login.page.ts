@@ -106,7 +106,7 @@ async openModal() {
    component: PopMessagesPage ,
   // swipeToClose: true,
    componentProps: {
-     "paramID": 2,   //this for reaching the right function
+     "paramID": 0,   //this for reaching the right function
      "paramTitle": this.Wcf.Contents,
     },
    cssClass: 'posting-popup',     
@@ -119,8 +119,7 @@ async openModal() {
     
       this.wait_async(this.dataReturned)
    
-      
-    
+          
           
    }
  });
@@ -129,34 +128,36 @@ async openModal() {
 }
       
   
-    wait_async(data){
+wait_async(data){
           
         console.log('loading  ' + data); 
         var zote = data.split(";");
              
             console.log("zote "+ zote)
+
          if  (zote.indexOf("no") >=0) {
-           alert('Sorry, wrong credentials used. Please try again')
+               alert('Sorry, wrong credentials used. Please try again')
                    
           }else if  (zote.indexOf("error") >=0) {
             //this.ThisMessage[0] = "Error encoutered";
             alert(this.Wcf.Error_message)
         
-        
-        }else {
+          }else if  (zote.indexOf("yes") >=0) {
             this.ThisMessage[0] = " Working. Please wait.....";
                     
 
-           this.Wcf.Usermesso = zote[0];
-           this.Wcf.User_id = zote[1]   
-           var justanumber= zote[2];
-           
-           this.router.navigate(['/tabs']);  
-         
-            console.log('User_id User_id' + this.Wcf.User_id); 
-           // this.Wcf.save_user_Data(this.Wcf.user_names);         
-            this.Procceed(); 
-           }
+            this.Wcf.Usermesso = zote[0];
+            this.Wcf.User_id = zote[1]   
+            var justanumber= zote[2];
+            
+            this.router.navigate(['/tabs']);  
+          
+             console.log('User_id User_id' + this.Wcf.User_id); 
+            // this.Wcf.save_user_Data(this.Wcf.user_names);         
+             this.Procceed(); 
+        }else {
+          alert(this.Wcf.Error_message)
+        }
     }
 
 
