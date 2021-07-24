@@ -37,7 +37,6 @@ export class PopMessagesPage implements OnInit {
   if (this.modelId == 0){
 
     var MainURL = "https://api.logistics.co.ke/Jujus.svc/Client_Connection?Contents=";          
-   // var encrypted = AES.encrypt(this.Content,'att@2020@').toString(); 
     this.Wcf.Contents =  this.Content + "|" + MainURL;
     this.Wcf.Serverconnector(MainURL, this.Content) 
     .then((data:string) => { 
@@ -52,7 +51,6 @@ export class PopMessagesPage implements OnInit {
    // this.Comm_server();
  }else if (this.modelId == 2){   
      var MainURL = "https://api.logistics.co.ke/Jujus.svc/Gettrucks?Contents=";          
-   // var encrypted = AES.encrypt(this.Content,'att@2020@').toString(); 
     this.Wcf.Contents =  this.Content + "|" + MainURL;
     this.Wcf.Serverconnector(MainURL, this.Content) 
     .then((data:string) => { 
@@ -60,7 +58,6 @@ export class PopMessagesPage implements OnInit {
     })
    }else if (this.modelId == 3){   
      var MainURL = "https://api.logistics.co.ke/Jujus.svc/Get_regs?Contents=";          
-   // var encrypted = AES.encrypt(this.Content,'att@2020@').toString(); 
     this.Wcf.Contents =  this.Content + "|" + MainURL;
     this.Wcf.Serverconnector(MainURL, this.Content) 
     .then((data:string) => { 
@@ -68,7 +65,6 @@ export class PopMessagesPage implements OnInit {
     })
      }else if (this.modelId == 4){   
      var MainURL = "https://api.logistics.co.ke/Jujus.svc/Insert_fuel?Contents=";          
-   // var encrypted = AES.encrypt(this.Content,'att@2020@').toString(); 
     this.Wcf.Contents =  this.Content + "|" + MainURL;
     this.Wcf.Serverconnector(MainURL, this.Content) 
     .then((data:string) => { 
@@ -77,12 +73,19 @@ export class PopMessagesPage implements OnInit {
     })
   }else if (this.modelId == 5){   
     var MainURL = "https://api.logistics.co.ke/Jujus.svc/expenses_insert?Contents=";          
-  // var encrypted = AES.encrypt(this.Content,'att@2020@').toString(); 
    this.Wcf.Contents =  this.Content + "|" + MainURL;
    this.Wcf.Serverconnector(MainURL, this.Content) 
    .then((data:string) => { 
      this.proceed(data)
      console.log("expensesdata" + data)
+   })
+  }else if (this.modelId == 6){   
+    var MainURL = "https://api.logistics.co.ke/Jujus.svc/shedule_insert?Contents=";          
+   this.Wcf.Contents =  this.Content + "|" + MainURL;
+   this.Wcf.Serverconnector(MainURL, this.Content) 
+   .then((data:string) => { 
+     this.proceed(data)
+     console.log("shedule_insert" + data)
    })
   
   }else{

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import { ModalController } from '@ionic/angular';
 import { WcfService } from '../wcf.service';
 import { PopMessagesPage } from '../pop-messages/pop-messages.page';
@@ -26,7 +26,7 @@ export class ExpensesPage implements OnInit {
   Fuelreport
   dataReturned
   constructor(private Loc: Location,private modalController:ModalController,
-    private wcf:WcfService,private router:Router) { 
+    private wcf:WcfService,private router:Router, private datepipe:DatePipe) { 
 }
 
   ngOnInit() {
@@ -113,11 +113,20 @@ await(data){
             
  
   }
+  entrydate;
   vehregno;
-  fuellitres;
-  fuelamount;
-  fuel_entry(){
-    
+  description;
+  expamo;
+  expenses_entry(){
+    var entrydate  = this.usage['entrydate'];
+    console.log("entrydate;" + entrydate)
+    if(entrydate.length<2) {   
+      alert( "Sorry, the entry date  is invalid") 
+      return
+    }
+    this.entrydate = entrydate
+
+
     var changename  = this.usage['vehreg'];  
     var vehregno = changename.trim()
     console.log("vehreg;" + vehregno)
@@ -128,24 +137,24 @@ await(data){
     this.vehreg = vehregno
 
 
-    var fuellitres  = this.usage['fuellitres'];
-    console.log(" fuellitres;" + fuellitres)
-    if(fuellitres.length<2) {        
-      alert( "Sorry, your fuel litres is invalid ") 
+    var description  = this.usage['description'];
+    console.log(" description;" + description)
+    if(description.length<2) {        
+      alert( "Sorry, your description is invalid ") 
       return
     }
-    this.fuellitres = fuellitres
+    this.description = description
 
 
 
-    var fuelamount  = this.usage['fuelamount'];
-    console.log(" fuelamount;" + fuelamount)
-    if(fuelamount.length<2) {
-      alert("Sorry, your fuel amount is invalid ") 
+    var expamo  = this.usage['expamo'];
+    console.log(" fuelamount;" + expamo)
+    if(expamo.length<2) {
+      alert("Sorry, your expense amount is invalid ") 
      
       return
     }
-    this.fuelamount = fuelamount
+    this.expamo = expamo
 
     
 
@@ -157,7 +166,9 @@ await(data){
 }
    
 async openMModal() {    
-      var data =   this.wcf.User_id + ";" + this.vehreg + ";" + this.fuellitres + ";" + this.fuelamount  + ";7979"
+  var siku  = this.usage['entrydate'];
+  let latest_date =this.datepipe.transform(siku, 'yyyy-MM-dd');
+      var data =   this.wcf.User_id + ";" + latest_date + ";" + this.vehreg  + ";" + this.description + ";" + this.expamo + ";7979"
 
       console.log('data ' + data)
       const modal = await this.modalController.create({
@@ -176,7 +187,7 @@ async openMModal() {
           
           console.log("this.dataReturned" + this.dataReturned)
           var feedback = this.dataReturned;  
-          console.log(feedback + "rtthis.dataReturned")   
+          console.log(feedback + "expethis.dataReturned")   
           
           if (feedback.indexOf("Error") >= 0){       
               alert(this.wcf.Error_message);
@@ -185,7 +196,7 @@ async openMModal() {
                 alert("Sorry but this data exist")
           }else if (feedback.indexOf("Success") >= 0){ 
           // this.userid=feedback;
-             console.log("na save user DATA " + feedback)
+             console.log("na save expe DATA " + feedback)
              alert("Saved succesfully click View List to View")
              this.router.navigate(['/tabs']);   
           }else{

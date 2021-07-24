@@ -20,19 +20,6 @@ export class VehicleListPage implements OnInit {
     private dom: DomSanitizer,private Loc: Location,
     private router:Router,) {
 
-// this.daBuilding = [
-//       { id: 1,avatarimage:'assets/imgs/tracking.png', prodname: 'Ace -KCA 128J"',assetkm: 'Moving(73kph)',  },
-   
-//       { id: 2,avatarimage:'assets/imgs/tracking.png', prodname: 'Monk -KCA 128J"',assetkm: 'Static (58Mins)',  },
-   
-//       { id: 3,avatarimage:'assets/imgs/tracking.png', prodname: 'Alchemist -KCA 128J"',assetkm: 'Moving(73kph)', },
-   
-//       { id: 4,avatarimage:'assets/imgs/tracking.png', prodname: 'Sage -KCA 128J"',assetkm: 'Moving(73kph)',  },
-//       { id: 5,avatarimage:'assets/imgs/tracking.png', prodname: 'Premio -KCA 128J"',assetkm: 'Moving(73kph)',  },
-//       { id: 6,avatarimage:'assets/imgs/tracking.png', prodname: 'M1 -KCA 128J"',assetkm: 'Moving(73kph)',  },
-   
-         
-//     ];
 
    }
 
@@ -84,11 +71,7 @@ export class VehicleListPage implements OnInit {
       if (dataReturned !== null) {
         this.dataReturned = dataReturned.data;
         console.log("this.dataReturned: " + this.dataReturned);
-       // this.products = []
-    
-        
-       // this.fb.logEvent(this.fb.EVENTS.EVENT_PARAM_SEARCH_STRING)
-       // this.fb.logEvent(this.fb.EVENTS.EVENT_PARAM_SEARCH_STRING,this.pname,0)
+      
     
     
         if (this.dataReturned == ""){
