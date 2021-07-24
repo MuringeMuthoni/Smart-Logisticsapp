@@ -31,8 +31,7 @@ export class WcfService {
   public Content_back;
   public Count : number =0;
   public dbname: String ="E01";
-  public Fetched_phone: string;
-  public Fetched_user: string;
+ 
   public User_id: string;
   Mcode ="";
   public shoplatln;
@@ -137,32 +136,32 @@ export class WcfService {
 
  
 
-  save_user_Data(username) {
-    console.log('db created: ' + this.dbname)
-    this.Count = 0;
-    this.sqlite.create({
-      name: "" + this.dbname,
-      location: 'default'
-    })
-    .then((db: SQLiteObject) => {
-      console.log('saving data now ' + this.Fetched_user + ',none' + ',' + this.User_id  + ','+ this.Acctype + ':user: ' + username);
-      db.executeSql('INSERT INTO users VALUES(NULL,?,?,?,?,?)',[this.Fetched_user,"none",this.User_id,this.Acctype,username ])
-        .then(res => {
-         //console.log('saved data now ' + this.data.coluser + ' , type: ' + this.Acctype );    
-          this.Count=1;  
+  // save_user_Data(username) {
+  //   console.log('db created: ' + this.dbname)
+  //   this.Count = 0;
+  //   this.sqlite.create({
+  //     name: "" + this.dbname,
+  //     location: 'default'
+  //   })
+  //   .then((db: SQLiteObject) => {
+  //    // console.log('saving data now ' + this.Fetched_user + ',none' + ',' + this.User_id  + ','+ this.Acctype + ':user: ' + username);
+  //     db.executeSql('INSERT INTO users VALUES(NULL,?,?,?,?,?)',[this.Fetched_user,"none",this.User_id,this.Acctype,username ])
+  //       .then(res => {
+  //        //console.log('saved data now ' + this.data.coluser + ' , type: ' + this.Acctype );    
+  //         this.Count=1;  
         
   
-        })
-        .catch(e => {
-          console.log('error is: ' + e);         
-        });
+  //       })
+  //       .catch(e => {
+  //         console.log('error is: ' + e);         
+  //       });
   
-    }).catch(e => {
-      console.log('error 3 is: ' + e);         
-    });
+  //   }).catch(e => {
+  //     console.log('error 3 is: ' + e);         
+  //   });
     
     
-  }
+  // }
   
 
 

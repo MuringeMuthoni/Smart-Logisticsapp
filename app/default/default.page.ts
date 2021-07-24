@@ -80,7 +80,7 @@ export class DefaultPage implements OnInit {
       this.mydb.db.executeSql('SELECT coluser,uref,ctype,unames FROM users ORDER BY rowid DESC', {})
          .then(res => {          
            if (res.rows.length > 0){      
-            this.Wcf.Fetched_user =   res.rows.item(0).coluser;          
+            ///this.Wcf.Fetched_user =   res.rows.item(0).coluser;          
             this.Wcf.User_id  =   res.rows.item(0).uref;             
             this.Wcf.Acctype  = res.rows.item(0).ctype;
             this.Wcf.Mcode = this.Wcf.User_id ;  

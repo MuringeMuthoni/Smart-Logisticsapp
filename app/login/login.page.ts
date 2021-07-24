@@ -83,31 +83,31 @@ export class LoginPage implements OnInit {
 
     
          
-        if(username.length<) {
-          alert('phone number is invalid: ' + username);
-          return
-        }
+        // if(username.length<4) {
+        //   alert('phone number is invalid: ' + username);
+        //   return
+        // }
        
-        var User 
-        if (username.includes("+")){
-          User = username.replace("+","")
-        }else{
-          User =  username
-        }
-        var start = username.substring(0,1)
-        if (start == "0"){
-          var trimuser =  username.replace("0","")    
-          User = "254" + trimuser
-        }else{
-          User =  username
-        }
-        var tels = User.trim()
+        // var User 
+        // if (username.includes("+")){
+        //   User = username.replace("+","")
+        // }else{
+        //   User =  username
+        // }
+        // var start = username.substring(0,1)
+        // if (start == "0"){
+        //   var trimuser =  username.replace("0","")    
+        //   User = "254" + trimuser
+        // }else{
+        //   User =  username
+        // }
+        // var tels = User.trim()
 
   
 
-      console.log ('username: ' + tels);  
-      this.Wcf.Fetched_user = tels;
-      this.Wcf.Username = tels
+     // console.log ('username: ' + tels);  
+      //this.Wcf.Fetched_user = tels;
+     // this.Wcf.Username = tels
       this.Wcf.Password = pass;
      
       this.Wcf.Protocal ="04"
@@ -188,7 +188,7 @@ async openModal() {
             this.router.navigate(['/login-initial']);  
            }else{
             console.log('User_id ' + this.Wcf.user_names); 
-            this.Wcf.save_user_Data(this.Wcf.user_names);         
+           // this.Wcf.save_user_Data(this.Wcf.user_names);         
             this.Procceed(); 
            }
 
