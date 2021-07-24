@@ -1,9 +1,88 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ReportsonSchedules</ion-title>
+   
+    <ion-title >
+       <h2 class="glow">Reports on fuel</h2>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+<ion-card *ngIf="segmentModel === 'Ongoing'" style="border-radius:20px">
+   
+
+            
+  <div *ngIf="no_items_found_new"  class="ion-padding" style="width: 100%;height: 100%;">
+    <ion-item lines="none"  text-wrap style="font-size:x-large;font-weight:  bolder;margin-top: 20px;">
+      Whoops!
+    </ion-item>
+
+    <div style="text-align: center;justify-content: center;margin-top: 30px;">
+       <img height="50%"  src = "assets/theme/oops.png"> 
+    </div>
+     
+    
+    <ion-item text-wrap style="font-size:x-large;font-weight:  bolder;margin-top: 80px;">
+      Whoops!
+    </ion-item>
+
+    <ion-item text-wrap lines="none">
+      <label style="font-size: medium;" >
+        <p>We couldn't find schedule reports for today<br>             
+       </p>                                     
+      </label>
+    </ion-item>       
+  </div>
+  
+
+  <div *ngIf="items_ziko_new" style="margin-top: 20px;">
+    <ion-card-subtitle style="margin-left: 5px;font-size: medium;">
+  
+         <p style="color:lime"> <b>  {{items}}  </b></p>
+        
+     </ion-card-subtitle>  
+
+   
+    <div style="padding-left: 10px;padding-right: 10px;">               
+           <div>
+  
+                 <ion-grid *ngFor="let item of Assignmentsfetch" (click)="itemTapped(item)" style="margin-top: 20px;"  > 
+              
+                  <ion-row   style="padding-left: 10px;padding-right: 10px ;border-bottom-style: solid;border-bottom-width: 1px;border-color: rgb(207, 211, 211);" >   
+  
+                    <ion-col align-self: stretch size="4" >
+                        <img [src]="item.image_ipath"  style="width: 150px;align-self: center;justify-self: left"  />                           
+                    </ion-col>
+                
+                    <ion-col align-self: center size="8"  style="align-items: left;color:#bff549" >
+                      <div style="margin-top: 1px;text-align: left;">
+                        <b> {{item.oCoursename}} </b> <br>                        
+                        <ion-item text-wrap lines="none">  
+                          <span style="font-size: small;" >{{item.oclassdetails}}  </span>
+                        </ion-item>
+                       
+                        <br>
+                        Tutor: {{item.otutor}}  <br>
+
+                                
+                       
+                        <div style="font-size: small;text-align: right;margin-bottom: 10px;">
+                          <img   [src]="item.image_url2"  style="height: 30px;justify-self: right"  />                           
+                        </div>                                  
+                        </div>                 
+                    </ion-col>
+                  </ion-row> 
+                  </ion-grid>
+                 
+            
+            
+              </div> 
+      </div>
+
+
+  </div>
+
+
+  </ion-card>
 </ion-content>

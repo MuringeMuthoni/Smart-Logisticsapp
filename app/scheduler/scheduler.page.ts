@@ -48,9 +48,10 @@ dataReturned
   }
   go_home(){
 
-    this.Loc.back();
+    this.router.navigate(['/tabs']);    
    
   }
+  
    
 async openModal(idata) {
 
