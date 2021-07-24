@@ -99,7 +99,7 @@ export class WcfService {
       // var Mes_to_send = this.Startbit  + Protocal   + MsgLength  + Content  + this.Stopbit;
       //    var MainURL =url 
        var Searchurl = url+ Cont;
-      // console.log('linklink ' + Searchurl);
+     console.log('linklink ' + Searchurl);
      
       this.http.get(Searchurl,{},{})
      .then((data) => {     

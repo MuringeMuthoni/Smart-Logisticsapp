@@ -50,8 +50,41 @@ export class PopMessagesPage implements OnInit {
     var encrypted = AES.encrypt(this.Content,'att@2020@').toString(); 
     this.Wcf.Contents =  encrypted + "|" + MainURL;
    // this.Comm_server();
-
-   
+ }else if (this.modelId == 2){   
+     var MainURL = "https://api.logistics.co.ke/Jujus.svc/Gettrucks?Contents=";          
+   // var encrypted = AES.encrypt(this.Content,'att@2020@').toString(); 
+    this.Wcf.Contents =  this.Content + "|" + MainURL;
+    this.Wcf.Serverconnector(MainURL, this.Content) 
+    .then((data:string) => { 
+      this.proceed(data)
+    })
+   }else if (this.modelId == 3){   
+     var MainURL = "https://api.logistics.co.ke/Jujus.svc/Get_regs?Contents=";          
+   // var encrypted = AES.encrypt(this.Content,'att@2020@').toString(); 
+    this.Wcf.Contents =  this.Content + "|" + MainURL;
+    this.Wcf.Serverconnector(MainURL, this.Content) 
+    .then((data:string) => { 
+      this.proceed(data)
+    })
+     }else if (this.modelId == 4){   
+     var MainURL = "https://api.logistics.co.ke/Jujus.svc/Insert_fuel?Contents=";          
+   // var encrypted = AES.encrypt(this.Content,'att@2020@').toString(); 
+    this.Wcf.Contents =  this.Content + "|" + MainURL;
+    this.Wcf.Serverconnector(MainURL, this.Content) 
+    .then((data:string) => { 
+      this.proceed(data)
+      console.log("data" + data)
+    })
+  }else if (this.modelId == 5){   
+    var MainURL = "https://api.logistics.co.ke/Jujus.svc/expenses_insert?Contents=";          
+  // var encrypted = AES.encrypt(this.Content,'att@2020@').toString(); 
+   this.Wcf.Contents =  this.Content + "|" + MainURL;
+   this.Wcf.Serverconnector(MainURL, this.Content) 
+   .then((data:string) => { 
+     this.proceed(data)
+     console.log("expensesdata" + data)
+   })
+  
   }else{
     this.msg_names = "MODE ID NOT SET ON POPUP"
     alert('MODE ID NOT SET ON POPUP ' + this.modelId)

@@ -53,7 +53,7 @@ export class VehicleListPage implements OnInit {
   ngOnInit() {
     //this.wcf.where_from = "live"   
   
-     var tosend = "1" + ";" + "All" +";7979"
+     var tosend = this.wcf.User_id + ";" + "All" +";7979"
      this.openModal(tosend)
     
   }

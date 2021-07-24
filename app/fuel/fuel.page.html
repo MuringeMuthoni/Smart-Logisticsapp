@@ -23,8 +23,8 @@
                     
              <ion-item>  
                   <ion-select   class="dropdown" placeholder="Select Vehicle Reg"  [(ngModel)]="usage.vehreg"   >
-                      <ion-select-option *ngFor="let names of vehreg;"  
-                          >{{names.prodname}}
+                      <ion-select-option *ngFor="let names of Regsfetched;"  
+                          >{{names.regs}}
                       </ion-select-option>
                   </ion-select>
                   <ion-icon class="ion-align-self-center" name="car-outline" slot="start"></ion-icon>
@@ -54,7 +54,7 @@
       <ion-grid >  
         <ion-row>          
           <ion-col> 
-            <ion-button (click)="Accepting()" shape="round" color="success"  > Submit           
+            <ion-button (click)="fuel_entry()" shape="round" color="success"  > Submit           
             </ion-button>
           </ion-col>
           <ion-col>               

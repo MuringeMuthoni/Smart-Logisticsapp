@@ -24,10 +24,10 @@
           </ion-item>
                       <hr style="margin-right: auto;height: 2px;background-color:#666;">   
             
-             <ion-item>  
+           <ion-item>  
                   <ion-select   class="dropdown" placeholder="Select Vehicle Reg"  [(ngModel)]="usage.vehreg"   >
-                      <ion-select-option *ngFor="let names of vehreg;"  
-                          >{{names.prodname}}
+                      <ion-select-option *ngFor="let names of Regsfetched;"  
+                          >{{names.regs}}
                       </ion-select-option>
                   </ion-select>
                   <ion-icon class="ion-align-self-center" name="car-outline" slot="start"></ion-icon>
@@ -37,7 +37,7 @@
          <hr style="margin-right: auto;height: 2px;background-color:#666;">  
                     
                <ion-item>                 
-                    <ion-input  type="text" maxlength="12" clearInput [(ngModel)]="usage.description" placeholder="Expense description"></ion-input>
+                    <ion-input  type="text" maxlength="50" clearInput [(ngModel)]="usage.description" placeholder="Expense description"></ion-input>
                     <ion-icon class="ion-align-self-center"  name="cash-outline" slot="start"></ion-icon>
                     
               </ion-item>
