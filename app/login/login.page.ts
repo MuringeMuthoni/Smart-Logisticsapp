@@ -60,6 +60,7 @@ export class LoginPage implements OnInit {
       //this.ThisMessage[0] = "";
    
       var username  = this.usage['txtuser'];
+      var useremail = this.usage['txtuser'];
       var pass  = this.usage['password'];    
       this.Wcf.Password = this.usage['password'];
 
@@ -82,7 +83,7 @@ export class LoginPage implements OnInit {
 
     
          
-        if(username.length<10) {
+        if(username.length<) {
           alert('phone number is invalid: ' + username);
           return
         }
@@ -110,7 +111,7 @@ export class LoginPage implements OnInit {
       this.Wcf.Password = pass;
      
       this.Wcf.Protocal ="04"
-     var data = tels + ";" + pass + ";"+   this.Wcf.fireid
+     var data = useremail + ";" + pass + ";"+ ";7979"
      console.log ('contents: ' + data);  
    
       
