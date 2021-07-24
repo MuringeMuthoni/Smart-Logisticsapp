@@ -145,15 +145,15 @@ wait_async(data){
           }else if  (zote.indexOf("yes") >=0) {
             this.ThisMessage[0] = " Working. Please wait.....";
                     
-
+             console.log('this.ThisMessage[0]' + this.ThisMessage[0]); 
             this.Wcf.Usermesso = zote[0];
             this.Wcf.User_id = zote[1]   
             var justanumber= zote[2];
-            
-            this.router.navigate(['/tabs']);  
+                    console.log('this.Wcf.Usermesso;' + this.Wcf.Usermesso + "this.Wcf.User_id;" + this.Wcf.User_id + "justanumber" + justanumber); 
+            this.router.navigate(['/login']);  
           
              console.log('User_id User_id' + this.Wcf.User_id); 
-            // this.Wcf.save_user_Data(this.Wcf.user_names);         
+            this.save_user_Data();         
              this.Procceed(); 
         }else {
           alert(this.Wcf.Error_message)
@@ -163,10 +163,38 @@ wait_async(data){
 
 
     
+  save_user_Data() {
+    console.log('db created: ' + this.dbname)
+    this.Count = 0;
+    this.sqlite.create({
+      name: "" + this.Wcf.dbname,
+      location: 'default'
+    })
+    .then((db: SQLiteObject) => {
+     console.log('saving data now ' + this.Wcf.Usermesso + 'this.wcf.User_id;' + ',' + this.Wcf.User_id  );
+      db.executeSql('INSERT INTO users VALUES(NULL,?,?,?)',[this.Wcf.Usermesso,this.Wcf.User_id])
+        .then(res => {
+        // console.log('saved data now ' + this.data.coluser + ' , type: ' + this.Acctype );    
+          this.Count=1;  
+             this.Procceed()
+    console.log('saved '   );
+        })
+        .catch(e => {
+          console.log('error is: ' + e);         
+        });
+  
+    }).catch(e => {
+      console.log('error 3 is: ' + e);         
+    });
+    
+    
+  }
+  
+
 
     Procceed() { 
+ console.log('saved data default '  );  
 
-      this.Wcf.reload = 2
       this.router.navigate(['/default']); 
 
               
@@ -175,13 +203,10 @@ wait_async(data){
   
 
       register(){
-        this.router.navigate(['/registration-form']);
+        this.router.navigate(['/registration']);
       }
 
       
-      Password_assist(){
-        this.router.navigate(['/password-assist'])
-      }
     }
   
 

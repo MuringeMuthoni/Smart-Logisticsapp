@@ -73,6 +73,10 @@ const routes: Routes = [
   },  {
     path: 'pop-alert',
     loadChildren: () => import('./pop-alert/pop-alert.module').then( m => m.PopAlertPageModule)
+  },
+  {
+    path: 'testpage',
+    loadChildren: () => import('./testpage/testpage.module').then( m => m.TestpagePageModule)
   }
 
 

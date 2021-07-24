@@ -88,7 +88,8 @@ export class DefaultPage implements OnInit {
            // console.log("Acctype" + this.Wcf.Acctype  )   
                   
              this.Count=1;     
-             this.router.navigate(['/tabs']); 
+            // this.router.navigate(['/tabs']); 
+           this.router.navigate(['/tabs']); 
            }else{   
             console.log("User_id hakuna"  ) 
             this.Count = 0;
@@ -106,7 +107,10 @@ export class DefaultPage implements OnInit {
    
   
   }
-  
+  proceed_home(){
+    console.log('proceed_home ')
+     this.router.navigate(['/tabs']);
+  }
 
   
   ionViewWillEnter(){

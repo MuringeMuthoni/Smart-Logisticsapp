@@ -41,12 +41,11 @@ export class MyDbService {
                   })   
                       .then((db: SQLiteObject) =>{
                         this.db = db;
-                        //console.log('Db console' + db )
-                        db.executeSql('create table  IF NOT EXISTS feedback_backend(rowid INTEGER PRIMARY KEY, siku VARCHAR(50), message VARCHAR(200))', [])
-                        db.executeSql('create table  IF NOT EXISTS users(rowid INTEGER PRIMARY KEY,colmesso VARCHAR(50),coluserid VARCHAR(50),coljustanumber  VARCHAR(50))', [])
-                        db.executeSql('create table  IF NOT EXISTS reginfo(rowid INTEGER PRIMARY KEY, regid VARCHAR(50))', [])
+                        console.log('Db console' + this.Wcf.dbname )
+                      
+                        db.executeSql('create table  IF NOT EXISTS users(rowid INTEGER PRIMARY KEY,colmesso VARCHAR(50),coluserid VARCHAR(50),coljustanumber  VARCHAR(50))', [])  
                         .catch(e => console.log( "e" +  e));
-                       // console.log('nimecreate zote');
+                        console.log('nimecreate zote');
                         resolve(this.Wcf.dbname)
                   })
 

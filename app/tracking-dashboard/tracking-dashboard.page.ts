@@ -11,6 +11,7 @@ export class TrackingDashboardPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+     console.log("I'm in tabs")
   }
   gotovehiclelist()
   {
