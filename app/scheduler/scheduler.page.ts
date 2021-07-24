@@ -195,4 +195,9 @@ async openModal(idata) {
       
         return await modal.present();
   }
+
+  gotoreports(){
+    this.router.navigate(['/reportson-schedules']);    
+  }
+
 }

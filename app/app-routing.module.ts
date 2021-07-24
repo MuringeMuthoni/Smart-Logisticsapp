@@ -77,6 +77,18 @@ const routes: Routes = [
   {
     path: 'testpage',
     loadChildren: () => import('./testpage/testpage.module').then( m => m.TestpagePageModule)
+  },
+  {
+    path: 'reportson-fuel',
+    loadChildren: () => import('./reportson-fuel/reportson-fuel.module').then( m => m.ReportsonFuelPageModule)
+  },
+  {
+    path: 'reportson-expenses',
+    loadChildren: () => import('./reportson-expenses/reportson-expenses.module').then( m => m.ReportsonExpensesPageModule)
+  },
+  {
+    path: 'reportson-schedules',
+    loadChildren: () => import('./reportson-schedules/reportson-schedules.module').then( m => m.ReportsonSchedulesPageModule)
   }
 
 

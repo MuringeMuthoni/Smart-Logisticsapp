@@ -198,6 +198,9 @@ async openMModal() {
       return await modal.present();
 }
 
+gotoreports(){
+  this.router.navigate(['/reportson-fuel']);    
+}
  }
  
 

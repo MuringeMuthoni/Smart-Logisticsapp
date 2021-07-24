@@ -1,3 +1,32 @@
+
+<ion-header style="margin: 0px;" >
+  <ion-toolbar class="new-background-color"  >
+       
+        <div style="text-align: center;width: 95%;margin-top: 1px;">
+          <ion-grid style="width: 100%;">
+            <ion-row style="padding-left: 10px;" >              
+              <ion-col size="1" style="text-align: left;margin-top: 10px;" >                                 
+               <ion-icon name="arrow-back-circle-outline"(click)="go_home()"></ion-icon>
+              </ion-col>
+            
+
+              <ion-col size="1"  style="text-align: left;margin-top: 5px;"   > 
+             
+                <ion-icon name="list-circle-outline" (click)="gotoreports()" size="medium"></ion-icon>
+               
+               
+              </ion-col>
+        
+            </ion-row>
+
+          </ion-grid>
+        </div>
+
+  </ion-toolbar>
+</ion-header>
+
+
+
 <ion-content>
  <div style="height: 30px;"></div>
   <ion-card class="letsplay">
@@ -23,10 +52,10 @@
               <ion-icon class="ion-align-self-center" name="calendar" slot="start"></ion-icon>
           </ion-item>
                        <hr style="margin-right: auto;height: 2px;background-color:#666;">  
-             <ion-item>  
+            <ion-item>  
                   <ion-select   class="dropdown" placeholder="Select Vehicle Reg"  [(ngModel)]="usage.vehreg"   >
-                      <ion-select-option *ngFor="let names of vehreg;"  
-                          >{{names.prodname}}
+                      <ion-select-option *ngFor="let names of Regsfetched;"  
+                          >{{names.regs}}
                       </ion-select-option>
                   </ion-select>
                   <ion-icon class="ion-align-self-center" name="car-outline" slot="start"></ion-icon>
@@ -87,9 +116,7 @@
                         <ion-item>
                           <ion-label  style="font-size: small;" >ksh. {{item.description}}   </ion-label>
                        </ion-item>
-                        <div style="font-size: small;text-align: right;">
-                        <ion-icon name="caret-forward-circle-outline" style="height: 20px;justify-self: right"></ion-icon>                                                 
-                        </div>                                  
+                                                      
                         </div>                 
                     </ion-col>
                   </ion-row> 
