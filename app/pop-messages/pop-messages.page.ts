@@ -46,13 +46,13 @@ export class PopMessagesPage implements OnInit {
 
   }else if (this.modelId == 2){
 
-    var MainURL = "https://api.logistics.co.ke/Jujus.svc/Create_account?Contents=";          
-    var encrypted = AES.encrypt(this.Content,'att@2020@').toString(); 
-    this.Wcf.Contents =  encrypted + "|" + MainURL;
+    var MainURL = "https://api.logistics.co.ke/Jujus.svc/Client_Connection?Contents=";          
+   // var encrypted = AES.encrypt(this.Content,'att@2020@').toString(); 
+    this.Wcf.Contents =  this.Content + "|" + MainURL;
     this.Comm_server();
 
   }else if (this.modelId == 4){   
-    var MainURL = "https://api.logistics.co.ke/Jujus.svc/Gettrucks?Contents=";          
+    var MainURL = "https://api.logistics.co.ke/Jujus.svc/Create_account?Contents=";          
     var encrypted = AES.encrypt(this.Content,'att@2020@').toString(); 
     this.Wcf.Contents =  encrypted + "|" + MainURL;
     this.Comm_server();
@@ -72,7 +72,7 @@ export class PopMessagesPage implements OnInit {
   public Comm_server(){    
     return new Promise((resolve) =>{     
 
-          var datazote =this.Wcf.Contents.split(";");
+          var datazote =this.Wcf.Contents.split("|");
         
           var data = datazote[0] 
           var MainURL = datazote[1]  

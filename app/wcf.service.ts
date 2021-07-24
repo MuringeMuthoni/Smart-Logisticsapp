@@ -33,6 +33,7 @@ export class WcfService {
   public dbname: String ="E01";
  
   public User_id: string;
+  public  Usermesso: string;
   Mcode ="";
   public shoplatln;
   public user_names: string;
@@ -91,23 +92,27 @@ export class WcfService {
     return new Promise((resolve, reject) =>{              
           
       var Sending_conts = Cont
-      // var Protocal = this.Protocal;
-      // var Content = this.stringToHex(Sending_conts);
-      // var MsgLens = Content.length;
-      // var MsgLength = ('000' + MsgLens).slice(-4); //String.format("%04d",MsgLens); 
-      // var Mes_to_send = this.Startbit  + Protocal   + MsgLength  + Content  + this.Stopbit;
+      var Protocal = this.Protocal;
+      var Content = this.stringToHex(Sending_conts);
+      var MsgLens = Content.length;
+      var MsgLength = ('000' + MsgLens).slice(-4); //String.format("%04d",MsgLens); 
+      var Mes_to_send = this.Startbit  + Protocal   + MsgLength  + Content  + this.Stopbit;
          var MainURL =url 
       var Searchurl = MainURL+ Sending_conts;
       console.log('linklink ' + Searchurl);
      
       this.http.get(Searchurl,{},{})
      .then((data) => {     
+      console.log('linklink data' + data);
        Response = data.data;       
         var returned = data.data;
+        console.log('linklink returned' + returned);
        var Result = returned.replace("\"","");
+       console.log('linklink Result' + Result);
        var rt = Result.replace("\"", "");
+       console.log('linklink rt' + rt);
        var rt2 = rt.replace('"', "");    
-    
+       console.log('linklink rt2' + rt2);
        if  (rt2.indexOf('error') >= 0) {  
         resolve("error");      
         }else{       
@@ -115,7 +120,7 @@ export class WcfService {
              .then((hexed) => {             
                var payload = hexed; 
                  resolve(payload);
-                // console.log('payload.. ' + payload)  
+                console.log('payload.. ' + payload)  
              })    
 
         }
@@ -136,32 +141,32 @@ export class WcfService {
 
  
 
-  // save_user_Data(username) {
-  //   console.log('db created: ' + this.dbname)
-  //   this.Count = 0;
-  //   this.sqlite.create({
-  //     name: "" + this.dbname,
-  //     location: 'default'
-  //   })
-  //   .then((db: SQLiteObject) => {
-  //    // console.log('saving data now ' + this.Fetched_user + ',none' + ',' + this.User_id  + ','+ this.Acctype + ':user: ' + username);
-  //     db.executeSql('INSERT INTO users VALUES(NULL,?,?,?,?,?)',[this.Fetched_user,"none",this.User_id,this.Acctype,username ])
-  //       .then(res => {
-  //        //console.log('saved data now ' + this.data.coluser + ' , type: ' + this.Acctype );    
-  //         this.Count=1;  
+  save_user_Data(username) {
+    console.log('db created: ' + this.dbname)
+    this.Count = 0;
+    this.sqlite.create({
+      name: "" + this.dbname,
+      location: 'default'
+    })
+    .then((db: SQLiteObject) => {
+     // console.log('saving data now ' + this.Fetched_user + ',none' + ',' + this.User_id  + ','+ this.Acctype + ':user: ' + username);
+      db.executeSql('INSERT INTO users VALUES(NULL,?,?,?,?)',[this.Usermesso,this.User_id])
+        .then(res => {
+        // console.log('saved data now ' + this.data.coluser + ' , type: ' + this.Acctype );    
+          this.Count=1;  
         
   
-  //       })
-  //       .catch(e => {
-  //         console.log('error is: ' + e);         
-  //       });
+        })
+        .catch(e => {
+          console.log('error is: ' + e);         
+        });
   
-  //   }).catch(e => {
-  //     console.log('error 3 is: ' + e);         
-  //   });
+    }).catch(e => {
+      console.log('error 3 is: ' + e);         
+    });
     
     
-  // }
+  }
   
 
 

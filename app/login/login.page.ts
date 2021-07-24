@@ -79,47 +79,16 @@ export class LoginPage implements OnInit {
       if (pass == undefined){
         alert("Password cannot be blank")
         return;
-      }  
-
-    
-         
-        // if(username.length<4) {
-        //   alert('phone number is invalid: ' + username);
-        //   return
-        // }
-       
-        // var User 
-        // if (username.includes("+")){
-        //   User = username.replace("+","")
-        // }else{
-        //   User =  username
-        // }
-        // var start = username.substring(0,1)
-        // if (start == "0"){
-        //   var trimuser =  username.replace("0","")    
-        //   User = "254" + trimuser
-        // }else{
-        //   User =  username
-        // }
-        // var tels = User.trim()
-
-  
-
-     // console.log ('username: ' + tels);  
-      //this.Wcf.Fetched_user = tels;
-     // this.Wcf.Username = tels
-      this.Wcf.Password = pass;
+      }    
+             this.Wcf.Password = pass;
      
-      this.Wcf.Protocal ="04"
-     var data = useremail + ";" + pass + ";"+ ";7979"
-     console.log ('contents: ' + data);  
-   
-      
-          this.Wcf.Count = 0;
-          var MainURL = "https://api.logistics.co.ke/Jujus.svc/Client_Connection?Contents=";          
-          var encrypted = AES.encrypt(data,'att@2020@').toString(); 
-          this.awaitmode=1;   
-          this.Wcf.Contents =  encrypted + "|" + MainURL;
+    
+            var data = useremail + ";" + pass + ";"+ "7979"
+            console.log ('contents:data ' + data);  
+          
+              
+          this.Wcf.Count = 0;      
+          this.Wcf.Contents = data ;
           console.log ('contents is ' + this.Wcf.Contents); 
           this.openModal();   
    
@@ -137,7 +106,7 @@ async openModal() {
    component: PopMessagesPage ,
   // swipeToClose: true,
    componentProps: {
-     "paramID": this.awaitmode,   //this for reaching the right function
+     "paramID": 2,   //this for reaching the right function
      "paramTitle": this.Wcf.Contents,
     },
    cssClass: 'posting-popup',     
@@ -166,7 +135,7 @@ async openModal() {
         var zote = data.split(";");
              
             console.log("zote "+ zote)
-         if  (zote.indexOf("Not") >=0) {
+         if  (zote.indexOf("no") >=0) {
            alert('Sorry, wrong credentials used. Please try again')
                    
           }else if  (zote.indexOf("error") >=0) {
@@ -178,26 +147,16 @@ async openModal() {
             this.ThisMessage[0] = " Working. Please wait.....";
                     
 
-           this.Wcf.User_id = zote[0];
-           this.Wcf.Acctype = zote[1]   
-           var cred_status = zote[2];
-           this.Wcf.user_names = zote[3]
-
-           if (cred_status == "initial"){
-             alert("Welcome to your partners account. Please change your password on the next")
-            this.router.navigate(['/login-initial']);  
-           }else{
-            console.log('User_id ' + this.Wcf.user_names); 
+           this.Wcf.Usermesso = zote[0];
+           this.Wcf.User_id = zote[1]   
+           var justanumber= zote[2];
+           
+           this.router.navigate(['/tabs']);  
+         
+            console.log('User_id User_id' + this.Wcf.User_id); 
            // this.Wcf.save_user_Data(this.Wcf.user_names);         
             this.Procceed(); 
            }
-
-          
-
-
-
-       }  
-  
     }
 
 

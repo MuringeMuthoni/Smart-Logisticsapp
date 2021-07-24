@@ -77,23 +77,24 @@ export class DefaultPage implements OnInit {
 
     try {           
       
-      this.mydb.db.executeSql('SELECT coluser,uref,ctype,unames FROM users ORDER BY rowid DESC', {})
+      this.mydb.db.executeSql('SELECT colmesso ,coluserid,coljustanumber FROM users ORDER BY rowid DESC', {})
          .then(res => {          
            if (res.rows.length > 0){      
             ///this.Wcf.Fetched_user =   res.rows.item(0).coluser;          
-            this.Wcf.User_id  =   res.rows.item(0).uref;             
-            this.Wcf.Acctype  = res.rows.item(0).ctype;
-            this.Wcf.Mcode = this.Wcf.User_id ;  
-            this.Wcf.user_names =    res.rows.item(0).unames;    
-            console.log("user_names:" + this.Wcf.user_names + ' | '+ this.Wcf.User_id  )  
+            this.Wcf.Usermesso  =   res.rows.item(0).colmesso;             
+            this.Wcf.User_id  = res.rows.item(0).coluserid;
+       
+            console.log("Usermesso:" + this.Wcf.Usermesso + ' | '+ this.Wcf.User_id  )  
            // console.log("Acctype" + this.Wcf.Acctype  )   
                   
-             this.Count=1;          
+             this.Count=1;     
+             this.router.navigate(['/tabs']); 
            }else{   
             console.log("User_id hakuna"  ) 
-            this.Count = 0;           
+            this.Count = 0;
+            this.router.navigate(['/intro']);            
            } 
-            this.proceed_home();
+            //this.proceed_home();
            
        })
        .catch(e => console.log('db error is: ' + e));
@@ -110,18 +111,7 @@ export class DefaultPage implements OnInit {
   
   ionViewWillEnter(){
       
-     console.log('dispatch on will enter ' + this.Wcf.ison);
-
-    if (this.Wcf.reload == 2){
-      this.Wcf.reload = 1
-      this.router.navigate(['/tabs']); 
-    }else if (this.Wcf.reload == 1){
-      navigator['app'].exitApp(); 
-    }else{
-      this.proceed_home()
-    }
-    
-     this.Wcf.ison=1;
+   
 
   }
 
@@ -132,58 +122,8 @@ export class DefaultPage implements OnInit {
   }
   
 
-    proceed_home(){
-
-      console.log('on proceed: ' + this.Count)
-     
-          if (this.Count >0){
-              this.router.navigate(['/tabs']); 
-             // this.ShowList()
-            }else{  
-              this.Wcf.user_log_status = "unregistered"
-              this.router.navigate(['/intro']);
-          }
-
-
-    }
-
-
-    divnonet: boolean =false;
     
 
-
-//pointerVisible: boolean =false;
-data: any;
-Contents=''; 
-items: Array<{saa: string, Client:string, from: string,To: string, Veh: string}>;
-itemss: Array<{ nnone: string}>;
-itttems:Array<{ oofline: string}>;
-loading;
-TotalMessage = [''];
-RequestMsg = [''];
-RequestMsg2 =[''];
-RequestMsg3 =[''];
-backmsg =[''];
-Cnames = [''];
-Cbranch = [''];
-Orderno = [''];
-
-divbilatrip: boolean =true;
-divwithtrip: boolean =false;
-bttnred: boolean =true;
-bttngreen: boolean =false;
-Status_trip;
-
-//ponterlst: boolean =true;
-//ponternotrip: boolean =false;
-//ponterfound: boolean =false;
-bttproceed:boolean =false;
-lblmesso: boolean =true;
-lblnone: boolean =false;
-bttstart:boolean=false;
-
-get_duration_interval: any;
-did_alert:boolean=false;
 
       
 
