@@ -9,163 +9,187 @@ import {interval} from 'rxjs';
 import { MyDbService } from '../my-db.service';
 
 
-
 @Component({
   selector: 'app-default',
   templateUrl: './default.page.html',
   styleUrls: ['./default.page.scss'],
 })
 export class DefaultPage implements OnInit {
-  SelTel =[''];
-  Selemail =[''];
-  Appversion =[''];
-  constructor(private sqlite: SQLite,public loadingController: LoadingController,
-    private platform: Platform ,public Conn: ConnectService,public modalController: ModalController,
-    public Wcf: WcfService,public mydb:MyDbService,private router: Router,private wcf:WcfService,
+ 
+
+  constructor(private sqlite: SQLite,public loadingController: LoadingController,private modalController:ModalController,
+    private platform: Platform ,public Conn: ConnectService, 
+    public Wcf: WcfService,public mydb:MyDbService,private router: Router,
 
     ) { }
-   
     subscription;
- pointerVisible: boolean =false;
+    pointerVisible: boolean =false;
     Count : number;
     dep : string;
     exits=0;
-    myphoto
+
   ngOnInit() {
+
+    this.Wcf.reload = 0
+    console.log('default... ' );
+    this.platform.ready().then(()=> {
+          this.check_connection();
+    })
+    
+
+  }
+
    
+  checknet;
+  check_connection(){        
+    this.Wcf.try_connect()
+    .then((data)=>{                           
+          if (data == true){
+            this.pointerVisible=false;
+          
+            try {
+              clearInterval(this.checknet);  
+            } catch (error) {                
+            }
 
-    this.platform.ready().then(() => {
-     
-    //this.router.navigate(['/testtest']);
+            this.mydb.initializeDatabase()
+            .then((data) => {   
+              this.Get_users();
+            })
 
-     this.check_connection();  
-     
-     })
-      
+                      
+            
+          }else{
+            this.pointerVisible=true;
+              
+            if (this.checknet == null){
+              this.checknet = setInterval(()=> { this.check_connection() }, 1000); 
+            }                     
+          }
+    });
   }
 
 
-  divnonet: boolean =false;
-  divnonet2:boolean=true;
-  divlogo:boolean=true;
-    divgeo:boolean=false;
-    divgeo2:boolean=false;
-  
-
-
-    checknet;
-    check_connection(){        
-      this.Wcf.try_connect()
-      .then((data)=>{                           
-            if (data == true){
-              this.divnonet=false;
-              this.divnonet2 =true;
-
-              clearInterval(this.checknet);  
-              //this.CheckPermissions(); 
-
-              
-              //this.Wcf.user_Geo_loc= "1.2168137!36.906568900000025";
-              //this.Wcf.user_Geo_enabled = "disabled"
-
-              this.mydb.initializeDatabase()
-              .then(res => {    
-               this.Get_users();
-             })  
-             console.log('default navigate....')
-             this.Wcf.where_from = "home"
-            
-
-             
-          
-              
-            }else{
-              this.divnonet=true;  
-              this.divnonet2 =false;
-                
-              if (this.checknet == null){
-                this.checknet = setInterval(()=> { this.check_connection() }, 3850); 
-              }                     
-            }
-      });
-    }
-    ver
-  
-
-    New_signup(){   
-      this.mydb.initializeDatabase()
-      .then((data) => {   
-        this.Get_users();
-      })
-  
-    }
+ 
+  Get_users(){ 
    
-    
+    console.log('on geting users')
 
-    Get_users(){ 
-     
+    try {           
       
-  
-      try {           
+      this.mydb.db.executeSql('SELECT coluser,uref,ctype,unames FROM users ORDER BY rowid DESC', {})
+         .then(res => {          
+           if (res.rows.length > 0){      
+            this.Wcf.Fetched_user =   res.rows.item(0).coluser;          
+            this.Wcf.User_id  =   res.rows.item(0).uref;             
+            this.Wcf.Acctype  = res.rows.item(0).ctype;
+            this.Wcf.Mcode = this.Wcf.User_id ;  
+            this.Wcf.user_names =    res.rows.item(0).unames;    
+            console.log("user_names:" + this.Wcf.user_names + ' | '+ this.Wcf.User_id  )  
+           // console.log("Acctype" + this.Wcf.Acctype  )   
+                  
+             this.Count=1;          
+           }else{   
+            console.log("User_id hakuna"  ) 
+            this.Count = 0;           
+           } 
+            this.proceed_home();
+           
+       })
+       .catch(e => console.log('db error is: ' + e));
+    
+   } catch (error) {
+     console.log('db error ' + error);
         
-        this.mydb.db.executeSql('SELECT coluserid,colusername,colregno  FROM userss ORDER BY rowid DESC', {})
-           .then(res => {          
-             if (res.rows.length > 0){      
-          
-                this.Wcf.Userid =   res.rows.item(0).coluserid;  
-                this.Wcf.Usermesso = res.rows.item(0).colusername;
-                this.Wcf.colregno = res.rows.item(0).colregno;   
-                 
-                //this.Wcf.fetchedpasswords = res.rows.item(0).colpasswords; 
-
-                console.log('user details: ' + this.Wcf.Userid + ", " + this.Wcf.Usermesso  + ", " + this.Wcf.colregno  )
-                            
-                  this.Count=1;
-                           
-                  this.router.navigate(['/tabs']); 
-                
-               
-             }else{   
-              
-              this.mydb.db.executeSql('SELECT regid  FROM reginfo', {})
-              .then(res => {          
-                if (res.rows.length > 0){ 
-                  this.Wcf.reg_id = res.rows.item(0).regid
-                  console.log('reg_id: ' +  this.Wcf.reg_id);                 
-                }
-              })
-
-              this.Wcf.Userid = 0             
-              this.Count = 0;
-              this.router.navigate(['/intro']); 
-              //this.router.navigate(['/testtest']);
-             
-             }        
-         })
-         .catch(e => console.log('db error is: ' + e));         
-     } catch (error) {
-       console.log('db error ' + error);     
-      }   
     }
-    
-     
-  
-    
-    ionViewWillEnter(){
-      console.log('on will enter ' + this.Wcf.ison);      
-       this.New_signup();  
-       this.Wcf.ison=1;
-  
-    }
-  
-
-    ngOnDestroy(){
-  
-    }
-  
-  
-  
-  
    
   
+  }
+  
+
+  
+  ionViewWillEnter(){
+      
+     console.log('dispatch on will enter ' + this.Wcf.ison);
+
+    if (this.Wcf.reload == 2){
+      this.Wcf.reload = 1
+      this.router.navigate(['/tabs']); 
+    }else if (this.Wcf.reload == 1){
+      navigator['app'].exitApp(); 
+    }else{
+      this.proceed_home()
+    }
+    
+     this.Wcf.ison=1;
+
+  }
+
+
+
+  ngOnDestroy(){
+
+  }
+  
+
+    proceed_home(){
+
+      console.log('on proceed: ' + this.Count)
+     
+          if (this.Count >0){
+              this.router.navigate(['/tabs']); 
+             // this.ShowList()
+            }else{  
+              this.Wcf.user_log_status = "unregistered"
+              this.router.navigate(['/intro']);
+          }
+
+
+    }
+
+
+    divnonet: boolean =false;
+    
+
+
+//pointerVisible: boolean =false;
+data: any;
+Contents=''; 
+items: Array<{saa: string, Client:string, from: string,To: string, Veh: string}>;
+itemss: Array<{ nnone: string}>;
+itttems:Array<{ oofline: string}>;
+loading;
+TotalMessage = [''];
+RequestMsg = [''];
+RequestMsg2 =[''];
+RequestMsg3 =[''];
+backmsg =[''];
+Cnames = [''];
+Cbranch = [''];
+Orderno = [''];
+
+divbilatrip: boolean =true;
+divwithtrip: boolean =false;
+bttnred: boolean =true;
+bttngreen: boolean =false;
+Status_trip;
+
+//ponterlst: boolean =true;
+//ponternotrip: boolean =false;
+//ponterfound: boolean =false;
+bttproceed:boolean =false;
+lblmesso: boolean =true;
+lblnone: boolean =false;
+bttstart:boolean=false;
+
+get_duration_interval: any;
+did_alert:boolean=false;
+
+      
+
+
+
+
+
+   
 }

@@ -6,10 +6,10 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { ConnectService } from '../connect.service';
 import { Router } from '@angular/router';
 import { WcfService } from '../wcf.service';
+
+import * as AES from 'crypto-js/aes';
 import { MyDbService } from '../my-db.service';
 import { PopMessagesPage } from '../pop-messages/pop-messages.page';
-import { Platform } from '@ionic/angular';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -17,8 +17,7 @@ import { Platform } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
  
-  
-  
+ 
   Count : number;
 
   admin = {email: ""};
@@ -29,27 +28,17 @@ export class LoginPage implements OnInit {
   constructor(private router: Router,private menuCtrl:MenuController,public modalController: ModalController,
     private Wcf:WcfService,private sqlite: SQLite,public mydb:MyDbService,
     private Conn:ConnectService,private loadingCtrl: LoadingController,
-    private alertCtrl: AlertController,private platform: Platform,private Loc: Location
-    ) { 
-      this.platform.backButton.subscribeWithPriority(10, () => {
-        this.Loc.back();
-        console.log('Handler was called!');
-      });
-    }
- 
-    ThisMessage = [''];      
+    private alertCtrl: AlertController,
+    ) { }
+
+    ThisMessage = [''];
+      
     usage={
       txtuser:'',
       txtphone:'',
       password:'',
     }
     
-      
-    
-    go_back(){
-      this.router.navigate(['/intro']);      
-      clearInterval(); 
-    }
     
     Startbit = "7878";
     Stopbit = "7979";
@@ -58,196 +47,184 @@ export class LoginPage implements OnInit {
     cargo = [''];
   
     ngOnInit() {
-     // console.log('ionViewDidLoad Login2Page');
+      console.log('ionViewDidLoad Login2Page');
       
       this.menuCtrl.enable(false);
       console.log('path: ' +location.pathname );
     }
-
-    
-  ionViewWillEnter(){
-    this.Wcf.where_from = "login"
-  }
   
-  Signup(){
-    this.router.navigate(['/sign-up']); 
-  }
-  Register(){
-    this.router.navigate(['/registration-pics']); 
-  }
-
-  ForgotPassword(){
-    this.router.navigate(['/forgot-password']); 
-  }
-
+  
+    
     Fetch_account(){
 
-      this.ThisMessage[0] = "";
+      //this.ThisMessage[0] = "";
    
       var username  = this.usage['txtuser'];
-      var pass  = this.usage['password'];
-      //this.Wcf.Username = this.usage['txtuser'];
-      //this.Wcf.Password = this.usage['password'];
+      var pass  = this.usage['password'];    
+      this.Wcf.Password = this.usage['password'];
 
-      this.ThisMessage[0] = "";
+     // this.ThisMessage[0] = "";
   
       if (username.length<1){    
-        this.ThisMessage[0] = "Please enter a username";
+        alert("Please enter a username")
         return;
       }
       if (username.length<3){
-        this.ThisMessage[0] = "Please enter a valid username. Minimum length is 4";
+        alert("Please enter a valid username. Minimum length is 4")
         return;
       }
+          
       
-      var psw: string = this.usage['password'];
-      console.log('pass is: ' + psw); 
-      
-      if (psw ==="undefined"){
+      if (pass == undefined){
         alert("Password cannot be blank")
-        //this.ThisMessage[0] = "Password cannot be blank";
         return;
       }  
-  
-      if (psw == null){
-        console.log('eml null '); 
-        alert("Email cannot be blank")
-       // this.ThisMessage[0] = "Email cannot be blank";
-        return;
-      }  
-  
-      var psdlens = psw.length;
-  
-      console.log('pass : ' + psdlens ); 
-      if (psdlens<3){
-        alert("Please enter a valid password. Minimum password length is 4")
-        //this.ThisMessage[0] = "Please enter a valid password. Minimum password length is 4";
-        return;
-      }
-  
-      if (psw === psw){
-      }else{
-        alert("Passwords do not match. please confirm")
-       // this.ThisMessage[0] = "Passwords do not match. please confirm";
-        return;
-      }
-         
-      this.Wcf.Fetched_user = this.usage['txtuser'];
-     // this.Wcf.Username = this.usage['txtuser'];
-     // this.Wcf.Password = pass;
-     // this.Wcf.Acctype = this.usertype;
 
-
-     var data = username + ";" + pass + ";" + "none" +  ";7979"
-     console.log ('contents is ' + this.Contents);  
-     this.ThisMessage[0] = "Please wait as we authenticate...";
-  
     
+         
+        if(username.length<10) {
+          alert('phone number is invalid: ' + username);
+          return
+        }
+       
+        var User 
+        if (username.includes("+")){
+          User = username.replace("+","")
+        }else{
+          User =  username
+        }
+        var start = username.substring(0,1)
+        if (start == "0"){
+          var trimuser =  username.replace("0","")    
+          User = "254" + trimuser
+        }else{
+          User =  username
+        }
+        var tels = User.trim()
+
+  
+
+      console.log ('username: ' + tels);  
+      this.Wcf.Fetched_user = tels;
+      this.Wcf.Username = tels
+      this.Wcf.Password = pass;
+     
+      this.Wcf.Protocal ="04"
+     var data = tels + ";" + pass + ";"+   this.Wcf.fireid
+     console.log ('contents: ' + data);  
+   
+      
           this.Wcf.Count = 0;
-        
-        
-          this.awaitmode=0;   
-          this.Wcf.Contents =  data;
+          var MainURL = "https://api.logistics.co.ke/Jujus.svc/Client_Connection?Contents=";          
+          var encrypted = AES.encrypt(data,'att@2020@').toString(); 
+          this.awaitmode=1;   
+          this.Wcf.Contents =  encrypted + "|" + MainURL;
+          console.log ('contents is ' + this.Wcf.Contents); 
           this.openModal();   
    
    }
 
 
-    awaitmode
-    dataReturned:any;
-    async openModal() {
 
+ awaitmode
+dataReturned:any;
+async openModal() {
 
-    const modal = await this.modalController.create({
-      component: PopMessagesPage ,
-      swipeToClose: true,
-      componentProps: {
-        "paramID": 0,   //this for reaching the right function
-        "paramTitle": this.Wcf.Contents,
-        },
-      cssClass: 'posting-popup',     
-    });
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned !== null) {
-        this.dataReturned = dataReturned.data;
-        console.log("authenticating: " + this.dataReturned);      
-          this.wait_async(this.dataReturned)                     
-      }
-    });
+  console.log('model ' + this.Wcf.Contents)
 
-    return await modal.present();
-    }
+ const modal = await this.modalController.create({
+   component: PopMessagesPage ,
+  // swipeToClose: true,
+   componentProps: {
+     "paramID": this.awaitmode,   //this for reaching the right function
+     "paramTitle": this.Wcf.Contents,
+    },
+   cssClass: 'posting-popup',     
+ });
+ modal.onDidDismiss().then((dataReturned) => {
+   if (dataReturned !== null) {
+     this.dataReturned = dataReturned.data;
+     console.log("this.dataReturned: " + dataReturned);
+
+    
+      this.wait_async(this.dataReturned)
+   
       
+    
+          
+   }
+ });
 
+ return await modal.present();
+}
+      
   
     wait_async(data){
           
-        console.log('loading:  ' + data); 
+        console.log('loading  ' + data); 
         var zote = data.split(";");
              
-          console.log("zote "+ zote)
-         if  (zote.indexOf("no") >=0) {
+            console.log("zote "+ zote)
+         if  (zote.indexOf("Not") >=0) {
            alert('Sorry, wrong credentials used. Please try again')
                    
           }else if  (zote.indexOf("error") >=0) {
             //this.ThisMessage[0] = "Error encoutered";
             alert(this.Wcf.Error_message)
-            this.router.navigate(['/intro']);
+        
         
         }else {
             this.ThisMessage[0] = " Working. Please wait.....";
                     
 
-           this.Wcf.Userid = zote[0];
-          // this.Wcf.Acctype = zote[1];                  
-          //  console.log('account type  ' + this.Wcf.Acctype + "; " + this.Wcf.Userid);
-            var savedata = this.Wcf.Userid     
-            console.log("savedata"  + "savedata" + savedata)
-            this.Save_user(data);
-           // this.router.navigate(['/default']); 
-           this.router.navigate(['/tabs']); 
+           this.Wcf.User_id = zote[0];
+           this.Wcf.Acctype = zote[1]   
+           var cred_status = zote[2];
+           this.Wcf.user_names = zote[3]
+
+           if (cred_status == "initial"){
+             alert("Welcome to your partners account. Please change your password on the next")
+            this.router.navigate(['/login-initial']);  
+           }else{
+            console.log('User_id ' + this.Wcf.user_names); 
+            this.Wcf.save_user_Data(this.Wcf.user_names);         
+            this.Procceed(); 
+           }
+
+          
+
+
 
        }  
   
     }
-    Useryes;
-    stdnames;
-    regn0;
-    Save_user(feedback){
+
+
+
     
-      var zote =  feedback.split(";");  
-      console.log("nimefika kwa szote" + zote)           
-      this.Wcf.Usermesso = zote[0]; 
-      this.Wcf.Userid = zote[1]; 
-      this.regn0 = zote[2]; 
-      console.log('registering user: ' +  this.Wcf.Userid  + ';' + this.Wcf.Userid + ";" +  this.regn0 )    
-      try {
-         this.mydb.db.executeSql('INSERT INTO userss VALUES (NULL, ?, ? , ? )', [ this.Useryes,this.Wcf.Userid, this.regn0 ])  
-      .then(res => {                 
-            this.Wcf.user_log_status = "registered";           
-            var data =this.Wcf.Userid + ';7979'      
-            this.Wcf.Content_back="";
-            console.log('data user: ' + data )
-            })
-            .catch(e => {
-              console.log('error 1 is: ' + e);         
-            });
-      } catch (error) {
-        console.log(error);
+
+    Procceed() { 
+
+      this.Wcf.reload = 2
+      this.router.navigate(['/default']); 
+
+              
+     
       }
-               
+  
 
+      register(){
+        this.router.navigate(['/registration-form']);
+      }
+
+      
+      Password_assist(){
+        this.router.navigate(['/password-assist'])
+      }
     }
+  
 
 
 
- forgotpassward()
-{
-  this.router.navigate(['/forgot-password']); 
-}
-registration()
-{
-  this.router.navigate(['/registration']); 
-}
 
-}
+

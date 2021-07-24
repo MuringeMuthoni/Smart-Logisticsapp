@@ -51,9 +51,9 @@ export class VehicleListPage implements OnInit {
    items_ziko_new:boolean=false
     dataReturned
   ngOnInit() {
-    this.wcf.where_from = "live"   
+    //this.wcf.where_from = "live"   
   
-     var tosend = this.wcf.Usermesso + ";" + "All" +";7979"
+     var tosend = "1" + ";" + "All" +";7979"
      this.openModal(tosend)
     
   }

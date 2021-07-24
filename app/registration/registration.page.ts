@@ -53,7 +53,7 @@ export class RegistrationPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.Wcf.where_from = "signup"
+    //this.Wcf.where_from = "signup"
   }
 
 
@@ -205,9 +205,9 @@ export class RegistrationPage implements OnInit {
                 }else if (feedback.indexOf("Success") >= 0){ 
                 // this.userid=feedback;
                 
-                  this.Save_user(feedback);
+                  //this.Save_user(feedback);
                  // console.log("na save user " + feedback)
-                 this.Wcf.regstage = "pending"
+                // this.Wcf.regstage = "pending"
  
                  this.alert_mode = 1
                  var msg = "Success! We have received your registration form. Please upload your photo and documents"
@@ -255,36 +255,36 @@ async pop_alert(idata) {
 
 checkitems
 
-Save_user(feedback){
+// Save_user(feedback){
 
-  this.mydb.initializeDatabase();   
-  var zote =  feedback.split(";");  
-  this.Wcf.reg_id = zote[1]; 
+//   this.mydb.initializeDatabase();   
+//   var zote =  feedback.split(";");  
+//  // this.Wcf.reg_id = zote[1]; 
 
- // this.Wcf.Fetched_email  = this.email
- // this.Wcf.User_uphone  = this.tel
-  //this.Wcf.user_name = zote[2];
-  var uname =  this.Wcf.user_name
-  if (uname == undefined){
-    uname ="none"
-  }
-  try {
+//  // this.Wcf.Fetched_email  = this.email
+//  // this.Wcf.User_uphone  = this.tel
+//   //this.Wcf.user_name = zote[2];
+//  // var uname =  this.Wcf.user_name
+//   // if (uname == undefined){
+//   //   uname ="none"
+//   // }
+//   try {
            
-    this.mydb.db.executeSql('INSERT INTO reginfo VALUES (NULL, ? )', [ this.Wcf.reg_id ])  
-    .then(res => {          
+//     this.mydb.db.executeSql('INSERT INTO reginfo VALUES (NULL, ? )', [ this.Wcf.reg_id ])  
+//     .then(res => {          
         
-      this.Wcf.user_log_status = "registered"          
-        })
-        .catch(e => {
-          console.log('error 1 is: ' + e);         
-        });
-  } catch (error) {
-    console.log(error);
-  }
+//       this.Wcf.user_log_status = "registered"          
+//         })
+//         .catch(e => {
+//           console.log('error 1 is: ' + e);         
+//         });
+//   } catch (error) {
+//     console.log(error);
+//   }
 
 
 
-}
+//}
 
 
 
@@ -300,7 +300,7 @@ Save_user(feedback){
   message;
   fetchcourses() {
   
-    var idata = this.Wcf.Userid + ";none"          
+    var idata = this.Wcf.User_id + ";none"          
     this.Wcf.Contents =  idata ;
     // console.log("this.Wcf.Userid" + this.Wcf.Contents);
      this.openCModal();   

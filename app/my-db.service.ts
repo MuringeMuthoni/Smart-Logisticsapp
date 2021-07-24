@@ -43,7 +43,7 @@ export class MyDbService {
                         this.db = db;
                         //console.log('Db console' + db )
                         db.executeSql('create table  IF NOT EXISTS feedback_backend(rowid INTEGER PRIMARY KEY, siku VARCHAR(50), message VARCHAR(200))', [])
-                        db.executeSql('create table  IF NOT EXISTS userss(rowid INTEGER PRIMARY KEY,coluserid VARCHAR(50),colusername VARCHAR(50),colregno  VARCHAR(50))', [])
+                        db.executeSql('create table  IF NOT EXISTS users(rowid INTEGER PRIMARY KEY,colmesso VARCHAR(50),coluserid VARCHAR(50),coljustanumber  VARCHAR(50))', [])
                         db.executeSql('create table  IF NOT EXISTS reginfo(rowid INTEGER PRIMARY KEY, regid VARCHAR(50))', [])
                         .catch(e => console.log( "e" +  e));
                        // console.log('nimecreate zote');
