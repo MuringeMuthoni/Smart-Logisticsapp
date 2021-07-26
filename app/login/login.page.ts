@@ -150,10 +150,9 @@ wait_async(data){
             this.Wcf.User_id = zote[1]   
             var justanumber= zote[2];
                     console.log('this.Wcf.Usermesso;' + this.Wcf.Usermesso + "this.Wcf.User_id;" + this.Wcf.User_id + "justanumber" + justanumber); 
-            this.router.navigate(['/login']);  
-          
-             console.log('User_id User_id' + this.Wcf.User_id); 
-            this.save_user_Data();         
+                    
+               console.log('User_id User_id' + this.Wcf.User_id); 
+               this.save_user_Data();         
              this.Procceed(); 
         }else {
           alert(this.Wcf.Error_message)
@@ -177,7 +176,7 @@ wait_async(data){
         // console.log('saved data now ' + this.data.coluser + ' , type: ' + this.Acctype );    
           this.Count=1;  
              this.Procceed()
-    console.log('saved '   );
+             console.log('saved '   );
         })
         .catch(e => {
           console.log('error is: ' + e);         
@@ -193,10 +192,9 @@ wait_async(data){
 
 
     Procceed() { 
- console.log('saved data default '  );  
-
-      this.router.navigate(['/default']); 
-
+          console.log('saved data default '  ); 
+         // this.router.navigate(['/default']); 
+          this.router.navigate(['/tabs']); 
               
      
       }

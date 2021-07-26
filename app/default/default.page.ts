@@ -89,7 +89,7 @@ export class DefaultPage implements OnInit {
                   
              this.Count=1;     
             // this.router.navigate(['/tabs']); 
-           this.router.navigate(['/tabs']); 
+              this.router.navigate(['/tabs']); 
            }else{   
             console.log("User_id hakuna"  ) 
             this.Count = 0;
