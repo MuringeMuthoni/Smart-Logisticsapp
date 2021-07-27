@@ -17,60 +17,46 @@
 
 
 <ion-content>
- <div style="height: 30px;"></div>
-  <ion-card class="letsplay">
- <div style="text-align: center;" *ngIf="viewentry">
-          <img   src = "assets/imgs/schedule.png"  style="height: 30%;width:30%"> 
-      </div>
-      <div style="text-align: center;width: 95%;margin-top: 1px;" *ngIf="viewlistt">
-          <ion-grid style="width: 100%;">
-            <ion-row style="padding-left: 10px;" >           
-              <ion-col size="1" style="text-align: left;margin-top: 10px;" >                
-                 <ion-icon style="width: 25px;height: 25px;color: white;margin-right: 1px;margin-top: 5px" name="search"  (click)="onKeypress($event)"></ion-icon>              
-              </ion-col>           
-            </ion-row>
-          </ion-grid>
-        </div>
+    <div style="height: 30px;"></div>
+      <ion-card class="letsplay">
+          <div style="text-align: center;" >
+              <img   src = "assets/imgs/schedule.png"  style="height: 30%;width:30%"> 
+          </div>
+         <div style="height: 50px;"></div>
+          <div   *ngIf="viewentry">
+             <ion-item>
+                  <ion-datetime displayFormat="DD-MM-YYYY" min="1960-03-14" max="2021-12-12" placeholder="Entry Date"  [(ngModel)]="usage.entrydate"></ion-datetime>
+                  <ion-icon class="ion-align-self-center" name="calendar" slot="start"></ion-icon>
+             </ion-item>
+                <hr style="margin-right: auto;height: 2px;background-color:#666;">  
 
-
-
-   <div style="height: 50px;"></div>
-     <div   *ngIf="viewentry">
-      <ion-item>
-            <ion-datetime displayFormat="DD-MM-YYYY" min="1960-03-14" max="2021-12-12" placeholder="Entry Date"  [(ngModel)]="usage.entrydate"></ion-datetime>
-              <ion-icon class="ion-align-self-center" name="calendar" slot="start"></ion-icon>
-          </ion-item>
-                       <hr style="margin-right: auto;height: 2px;background-color:#666;">  
-            <ion-item>  
-                  <ion-select   class="dropdown" placeholder="Select Vehicle Reg"  [(ngModel)]="usage.vehreg"   >
+             <ion-item>  
+                <ion-select   class="dropdown" placeholder="Select Vehicle Reg"  [(ngModel)]="usage.vehreg"   >
                       <ion-select-option *ngFor="let names of Regsfetched;"  
                           >{{names.regs}}
                       </ion-select-option>
-                  </ion-select>
-                  <ion-icon class="ion-align-self-center" name="car-outline" slot="start"></ion-icon>
+                </ion-select>
+                <ion-icon class="ion-align-self-center" name="car-outline" slot="start"></ion-icon>
                  
-              </ion-item>
+             </ion-item>
+             <hr style="margin-right: auto;height: 2px;background-color:#666;">  
 
-         <hr style="margin-right: auto;height: 2px;background-color:#666;">  
                     
                <ion-item>                 
                     <ion-input  type="text" clearInput [(ngModel)]="usage.description" placeholder="Shedule description"></ion-input>
                     <ion-icon class="ion-align-self-center"  name="cash-outline" slot="start"></ion-icon>
                     
               </ion-item>
-         <hr style="margin-right: auto;height: 2px;background-color:#666;">  
+                  <hr style="margin-right: auto;height: 2px;background-color:#666;">  
 
-              
-           
-         
-    <div  style="text-align: center;margin-bottom: 10px;">
     
-            <ion-button (click)="expenses_entry()" shape="round" color="success"  > Submit           
-              
-   </ion-button >
-   
- </div>
-    
+           <div  style="text-align: center;margin-bottom: 10px;">  
+              <ion-button (click)="schedule_entry()" shape="round" color="success"  > Submit </ion-button >
+          </div>
+           </div>
+      </ion-card>
+ 
+        
           
-   </ion-card>
+  
 </ion-content>

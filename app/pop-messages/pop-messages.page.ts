@@ -87,7 +87,38 @@ export class PopMessagesPage implements OnInit {
      this.proceed(data)
      console.log("shedule_insert" + data)
    })
-  
+  }else if (this.modelId == 7){   
+    var MainURL = "https://api.logistics.co.ke/Jujus.svc/shedule_insert?Contents=";          
+   this.Wcf.Contents =  this.Content + "|" + MainURL;
+   this.Wcf.Serverconnector(MainURL, this.Content) 
+   .then((data:string) => { 
+     this.proceed(data)
+     console.log("shedule_insert" + data)
+   })
+  }else if (this.modelId == 8){   
+    var MainURL = "https://api.logistics.co.ke/Jujus.svc/Report_fuel?Contents=";          
+   this.Wcf.Contents =  this.Content + "|" + MainURL;
+   this.Wcf.Serverconnector(MainURL, this.Content) 
+   .then((data:string) => { 
+     this.proceed(data)
+     console.log("Report_fuel" + data)
+   })
+  }else if (this.modelId == 9){   
+    var MainURL = "https://api.logistics.co.ke/Jujus.svc/shedule_report?Contents=";          
+   this.Wcf.Contents =  this.Content + "|" + MainURL;
+   this.Wcf.Serverconnector(MainURL, this.Content) 
+   .then((data:string) => { 
+     this.proceed(data)
+     console.log("Report_fuel" + data)
+   })
+  }else if (this.modelId == 10){   
+    var MainURL = "https://api.logistics.co.ke/Jujus.svc/expenses_report?Contents=";          
+   this.Wcf.Contents =  this.Content + "|" + MainURL;
+   this.Wcf.Serverconnector(MainURL, this.Content) 
+   .then((data:string) => { 
+     this.proceed(data)
+     console.log("Report_fuel" + data)
+   })
   }else{
     this.msg_names = "MODE ID NOT SET ON POPUP"
     alert('MODE ID NOT SET ON POPUP ' + this.modelId)
