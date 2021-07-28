@@ -89,6 +89,10 @@ const routes: Routes = [
   {
     path: 'reportson-schedules',
     loadChildren: () => import('./reportson-schedules/reportson-schedules.module').then( m => m.ReportsonSchedulesPageModule)
+  },
+  {
+    path: 'tracking-all',
+    loadChildren: () => import('./tracking-all/tracking-all.module').then( m => m.TrackingAllPageModule)
   }
 
 
