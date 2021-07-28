@@ -2,9 +2,12 @@ import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { AlertController, LoadingController, NavController,  Platform } from '@ionic/angular';
 import { WcfService } from '../wcf.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { PopMessagesPage } from '../pop-messages/pop-messages.page';
+import {DomSanitizer} from '@angular/platform-browser';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 declare var google: any;
-
-
 @Component({
   selector: 'app-tracking-all',
   templateUrl: './tracking-all.page.html',
@@ -29,21 +32,13 @@ export class TrackingAllPage implements OnInit {
     set: false,
     latlng: google.maps.LatLng
   };
-  constructor(public navCtrl: NavController,public alertController: AlertController,
-    public platform: Platform,public wcf: WcfService,private loadingCtrl: LoadingController,private Loc: Location,
+  constructor(public navCtrl: NavController,public alertController: AlertController, private modalController:ModalController,
+    private router:Router,public platform: Platform,public wcf: WcfService,private loadingCtrl: LoadingController,private Loc: Location,
   ) {   
 
   }
 
   
-  ngAfterViewInit() {
-    this.platform.ready().then(()=> { 
-      this.presentLoading();    
-     
-     });
-   
-    //this.divpost = false
-  }
   vehlattitide;
   vehlongitude; 
   vehreg;
@@ -53,40 +48,18 @@ export class TrackingAllPage implements OnInit {
   
  loaded=0; 
  currentPosition: string = 'Please wait..';
- initMap() {
-  var lats=-1.2680238;
-  var plon = 36.8281785;
-    
-  var ori = new google.maps.LatLng(lats,plon);
-   
-    this.map = new google.maps.Map(this.mapElement.nativeElement, {
-      zoom: 15,
-         center: ori
-    });
 
-
-    this.presentLoading()
-  }
 
 
 
 
 Contents
-async presentLoading() {
-  const loading = await this.loadingCtrl.create({
-    message: 'Loading trip path. Please wait...',
-    duration: 2000
-  });
-  await loading.present();
- 
-  this.loadmap();
 
-}
 
-loadmap(){
+loadmap(idata){
 
-console.log('init map in');
-var data = this.wcf.Contents
+console.log('init map in' + idata);
+ var data = idata
 var splitvehicle = data.split(";");  
 this.vehlattitide = "-1.2180854"
 console.log('this.vehlattitide: ' +this.vehlattitide)
@@ -108,15 +81,6 @@ var lon1 = this.vehlongitude;
 //var plon = lon.substring(0, 10); 
 var ori = new google.maps.LatLng(lat1,lon1);
 
-
-// var dna =  this.Wcf.dlatlng.split(",");            
-//var lat2 = dna[0].trim();
-//var lon2 = dna[1].trim();
-
-//lats = lat2.replace("(","");
-//lon = lon2.replace(")",""); 
-//var dlon = lon.substring(0,10);
-//var dest = new google.maps.LatLng(lats, lon); 
 
   this.map = new google.maps.Map(this.mapElement.nativeElement, {
     zoom: 17,
@@ -231,9 +195,59 @@ gettrips_online(){
      
     }
     ngOnInit() {
- 
-      // console.log('lesson ' +  this.course)
-     //  var tosend = this.wcf.User_id + ";7979"
-     //  this.openModal(tosend)
+      var tosend = this.wcf.User_id + ";" + "All" +";7979"
+      console.log( "openModal tosend" + tosend)
+      this.openModal(tosend)
     }
+
+    dataReturned;
+    async openModal(idata) {
+
+      console.log( "openModal idata" + idata)
+      const modal = await this.modalController.create({
+        component: PopMessagesPage ,
+        swipeToClose: false,
+        componentProps: {
+          "paramID": 2,   //this for reaching the right function
+          "paramTitle": idata,
+         
+         },
+        cssClass: 'posting-popup',     
+        backdropDismiss:false, 
+        
+      });
+      modal.onDidDismiss().then((dataReturned) => {
+        if (dataReturned !== null) {
+          this.dataReturned = dataReturned.data;
+          console.log("this.dataReturned: " + this.dataReturned);
+        
+      
+      
+          if (this.dataReturned == ""){
+           
+          }else{
+            
+            this.loadmap(this.dataReturned);
+          }
+         
+          
+        }
+      });
+      
+      return await modal.present();
+      }
+      
+      itemall;
+      itemonline;
+      itemoffline;
+  
+     
+                    
+                    
+                    
+             
+                    
+                    
+   
+
 }
