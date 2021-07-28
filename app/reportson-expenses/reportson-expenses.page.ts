@@ -29,7 +29,7 @@ export class ReportsonExpensesPage implements OnInit {
   ngOnInit() {
  
     // console.log('lesson ' +  this.course)
-     var tosend = this.wcf.User_id + ";7979"
+     var tosend = this.wcf.User_id + ";all" + ";01-07-2021"  + ";31-07-2021" + ";7979"
      this.openModal(tosend)
   }
 
