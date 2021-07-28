@@ -15,7 +15,7 @@ export class TrackingDashboardPage implements OnInit {
   }
   gotovehiclelist()
   {
-    this.router.navigate(['/tracking-all']); 
+    this.router.navigate(['/vehicle-list']); 
     
   }
   gotofuel()
@@ -35,7 +35,7 @@ export class TrackingDashboardPage implements OnInit {
   }
   gotoTracking()
   {
-    this.router.navigate(['/tracking']); 
+    this.router.navigate(['/tracking-all']); 
     
   }
   gotorgotoTrackingeports()
